@@ -1,15 +1,15 @@
-#ifdef __OBJC__
-#import <UIKit/UIKit.h>
-#else
-#ifndef FOUNDATION_EXPORT
-#if defined(__cplusplus)
-#define FOUNDATION_EXPORT extern "C"
-#else
-#define FOUNDATION_EXPORT extern
-#endif
-#endif
-#endif
+//
+//  SeedCategoryHeader.h
+//  Pods
+//
+//  Created by GuanQinghao on 2020/3/29.
+//
 
+#ifndef SeedCategoryHeader_h
+#define SeedCategoryHeader_h
+
+
+//MARK:Foundation
 #import "NSArray+GQHSafety.h"
 #import "NSDate+GQHFormatter.h"
 #import "NSDictionary+GQHJSON.h"
@@ -22,7 +22,9 @@
 #import "NSString+GQHFormatter.h"
 #import "NSString+GQHSafety.h"
 #import "NSString+GQHVersion.h"
-#import "SeedCategoryHeader.h"
+
+
+//MARK:UIKit
 #import "CAAnimation+GQHAnimation.h"
 #import "UIApplication+GQHApplication.h"
 #import "UIApplication+GQHFileManager.h"
@@ -40,6 +42,5 @@
 #import "UIViewController+GQHAlert.h"
 #import "UIViewController+GQHPermission.h"
 
-FOUNDATION_EXPORT double SeedCategoryVersionNumber;
-FOUNDATION_EXPORT const unsigned char SeedCategoryVersionString[];
 
+#endif /* SeedCategoryHeader_h */

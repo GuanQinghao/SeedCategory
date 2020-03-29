@@ -1,9 +1,6 @@
 # SeedCategory
 
-[![CI Status](https://img.shields.io/travis/GuanQinghao/SeedCategory.svg?style=flat)](https://travis-ci.org/GuanQinghao/SeedCategory)
-[![Version](https://img.shields.io/cocoapods/v/SeedCategory.svg?style=flat)](https://cocoapods.org/pods/SeedCategory)
-[![License](https://img.shields.io/cocoapods/l/SeedCategory.svg?style=flat)](https://cocoapods.org/pods/SeedCategory)
-[![Platform](https://img.shields.io/cocoapods/p/SeedCategory.svg?style=flat)](https://cocoapods.org/pods/SeedCategory)
+
 
 ## Example
 
@@ -17,6 +14,8 @@ SeedCategory is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
+source 'https://github.com/GuanQinghao/SeedSpecs.git'
+
 pod 'SeedCategory'
 ```
 
