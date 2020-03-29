@@ -1,0 +1,6 @@
+framework module SeedCategory {
+  umbrella header "SeedCategory-umbrella.h"
+
+  export *
+  module * { export * }
+}
