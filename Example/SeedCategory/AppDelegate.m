@@ -1,14 +1,14 @@
 //
-//  GQHAppDelegate.m
+//  AppDelegate.m
 //  SeedCategory
 //
 //  Created by GuanQinghao on 03/29/2020.
 //  Copyright (c) 2020 GuanQinghao. All rights reserved.
 //
 
-#import "GQHAppDelegate.h"
+#import "AppDelegate.h"
 
-@implementation GQHAppDelegate
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

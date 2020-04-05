@@ -10,7 +10,7 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - MBProgressHUD (1.2.0)
-  - SeedCategory (0.0.2):
+  - SeedCategory (0.0.4):
     - MBProgressHUD
   - Specta (1.0.7)
 
@@ -38,9 +38,9 @@ SPEC CHECKSUMS:
   "Expecta+Snapshots": dcff217eef506dabd6dfdc7864ea2da321fafbb8
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  SeedCategory: 6a47d5b19e79f9d02f7fa1a2771dfdf7bab0f7ef
+  SeedCategory: d22905e4c6125a46687a424441cd5994904297b8
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
-PODFILE CHECKSUM: e929c4de927fcbc03e51f1ce2be832983d813040
+PODFILE CHECKSUM: 744598b4b4510231336791f7e10d52381bb3bd45
 
 COCOAPODS: 1.8.4

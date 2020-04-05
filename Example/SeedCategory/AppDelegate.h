@@ -1,5 +1,5 @@
 //
-//  GQHAppDelegate.h
+//  AppDelegate.h
 //  SeedCategory
 //
 //  Created by GuanQinghao on 03/29/2020.
@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-@interface GQHAppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

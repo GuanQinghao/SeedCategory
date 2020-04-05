@@ -1,8 +1,7 @@
 {
   "name": "SeedCategory",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "summary": "常用分类.",
-  "description": "常用分类",
   "homepage": "https://github.com/GuanQinghao/SeedCategory",
   "license": {
     "type": "MIT",
@@ -13,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/GuanQinghao/SeedCategory.git",
-    "tag": "0.0.2"
+    "tag": "0.0.4"
   },
   "platforms": {
     "ios": "10.0"

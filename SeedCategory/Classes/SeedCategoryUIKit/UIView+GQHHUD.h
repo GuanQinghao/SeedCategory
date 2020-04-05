@@ -12,7 +12,6 @@
 @protocol GQHHUDDelegate <NSObject>
 
 - (void)showHUD;
-
 - (void)showHUDWithText:(NSString *)text;
 - (void)hideHUD;
 
