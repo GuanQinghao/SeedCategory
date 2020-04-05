@@ -37,6 +37,7 @@
 #import "UIView+GQHBadge.h"
 #import "UIView+GQHDashLine.h"
 #import "UIView+GQHFrame.h"
+#import "UIView+GQHHUD.h"
 #import "UIViewController+GQHAlert.h"
 #import "UIViewController+GQHPermission.h"
 
