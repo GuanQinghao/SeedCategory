@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SeedCategory'
-  s.version          = '0.0.4'
-  s.summary          = '常用分类.'
+  s.version          = '0.0.5'
+  s.summary          = 'Objective-C 常用分类'
   s.homepage         = 'https://github.com/GuanQinghao/SeedCategory'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'GuanQinghao' => 'qinghaoguan@163.com' }

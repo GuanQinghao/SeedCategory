@@ -1,12 +1,12 @@
 //
-//  SeedCategoryHeader.h
+//  SeedCategory.h
 //  Pods
 //
-//  Created by GuanQinghao on 2020/3/29.
+//  Created by Mac on 2020/4/21.
 //
 
-#ifndef SeedCategoryHeader_h
-#define SeedCategoryHeader_h
+#ifndef SeedCategory_h
+#define SeedCategory_h
 
 
 //MARK:Foundation
@@ -44,4 +44,4 @@
 #import "UIViewController+GQHPermission.h"
 
 
-#endif /* SeedCategoryHeader_h */
+#endif /* SeedCategory_h */

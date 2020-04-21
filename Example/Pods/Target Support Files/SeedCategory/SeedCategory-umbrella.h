@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "SeedCategory.h"
 #import "NSArray+GQHSafety.h"
 #import "NSDate+GQHFormatter.h"
 #import "NSDictionary+GQHJSON.h"
@@ -22,7 +23,6 @@
 #import "NSString+GQHFormatter.h"
 #import "NSString+GQHSafety.h"
 #import "NSString+GQHVersion.h"
-#import "SeedCategoryHeader.h"
 #import "CAAnimation+GQHAnimation.h"
 #import "UIApplication+GQHApplication.h"
 #import "UIApplication+GQHFileManager.h"
