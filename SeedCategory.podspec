@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SeedCategory'
-  s.version          = '0.0.5'
+  s.version          = '0.0.6'
   s.summary          = 'Objective-C 常用分类'
   s.homepage         = 'https://github.com/GuanQinghao/SeedCategory'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -17,10 +17,4 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
   s.source_files = 'SeedCategory/Classes/**/*'
   s.dependency 'MBProgressHUD'
-  
-  # s.resource_bundles = {
-  #   'SeedCategory' => ['SeedCategory/Assets/*.png']
-  # }
-  # s.frameworks = 'UIKit', 'MapKit'
-   
 end

@@ -7,7 +7,6 @@
 //
 
 #import "GQHViewController.h"
-#import <SeedCategory/SeedCategory.h>
 
 @interface GQHViewController ()
 
