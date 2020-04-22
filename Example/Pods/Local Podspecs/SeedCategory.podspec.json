@@ -1,7 +1,7 @@
 {
   "name": "SeedCategory",
-  "version": "0.0.4",
-  "summary": "常用分类.",
+  "version": "0.0.5",
+  "summary": "Objective-C 常用分类",
   "homepage": "https://github.com/GuanQinghao/SeedCategory",
   "license": {
     "type": "MIT",
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/GuanQinghao/SeedCategory.git",
-    "tag": "0.0.4"
+    "tag": "0.0.5"
   },
   "platforms": {
     "ios": "10.0"

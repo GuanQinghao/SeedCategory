@@ -1,31 +1,18 @@
 PODS:
   - Expecta (1.0.6)
-  - "Expecta+Snapshots (3.1.1)":
-    - Expecta (~> 1.0)
-    - FBSnapshotTestCase/Core (~> 2.0)
-    - Specta (~> 1.0)
-  - FBSnapshotTestCase (2.1.4):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
-  - FBSnapshotTestCase/Core (2.1.4)
-  - FBSnapshotTestCase/SwiftSupport (2.1.4):
-    - FBSnapshotTestCase/Core
   - MBProgressHUD (1.2.0)
-  - SeedCategory (0.0.4):
+  - SeedCategory (0.0.5):
     - MBProgressHUD
   - Specta (1.0.7)
 
 DEPENDENCIES:
   - Expecta
-  - "Expecta+Snapshots"
-  - FBSnapshotTestCase
   - SeedCategory (from `../`)
   - Specta
 
 SPEC REPOS:
   trunk:
     - Expecta
-    - "Expecta+Snapshots"
-    - FBSnapshotTestCase
     - MBProgressHUD
     - Specta
 
@@ -35,12 +22,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  "Expecta+Snapshots": dcff217eef506dabd6dfdc7864ea2da321fafbb8
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  SeedCategory: d22905e4c6125a46687a424441cd5994904297b8
+  SeedCategory: 05cc5b6c8a2935de52d2985147c21bbb412d75d5
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
-PODFILE CHECKSUM: 744598b4b4510231336791f7e10d52381bb3bd45
+PODFILE CHECKSUM: c765bca339fc596dc3269dc481c4cd097307f231
 
 COCOAPODS: 1.9.1
