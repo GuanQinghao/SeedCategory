@@ -108,6 +108,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param formatterType 时间格式化样式
 + (NSString *)qh_formatterTypeStringWith:(GQHDateTimeFormatterType)formatterType;
 
+/// 未来七天/一周
++ (NSArray *)qh_nextSevenDays;
+
+/// 过去七天/一周
++ (NSArray *)qh_lastSevenDays;
+
 @end
 
 NS_ASSUME_NONNULL_END

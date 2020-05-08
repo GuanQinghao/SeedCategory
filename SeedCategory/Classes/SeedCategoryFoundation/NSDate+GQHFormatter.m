@@ -273,6 +273,64 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     return [components weekday];
 }
 
+/// 未来七天/一周
++ (NSArray *)qh_nextSevenDays {
+    
+    // 天数
+    NSInteger count = 7;
+    // 当前日历
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    // 时间格式化 - yyyy-MM-dd
+    NSDateFormatter *dateFormatter = NSDate.qh_defaultDateFormatter;
+    dateFormatter.dateFormat = [self qh_formatterTypeStringWith:GQHDateTimeFormatterTypeHyphenYearMonthDay];
+    
+    // 结果
+    NSMutableArray *dayArray = [NSMutableArray array];
+    
+    for (NSInteger i = 0; i < count; i++) {
+        
+        // 未来的某一天
+        NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday) fromDate:[NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * i]];
+        NSDate *date = [calendar dateFromComponents:components];
+        
+        // 获取年月日
+        NSString *dayString = [dateFormatter stringFromDate:date];
+        
+        [dayArray addObject:dayString];
+    }
+    
+    return dayArray;
+}
+
+/// 过去七天/一周
++ (NSArray *)qh_lastSevenDays {
+    
+    // 天数
+    NSInteger count = 7;
+    // 当前日历
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    // 时间格式化 - yyyy-MM-dd
+    NSDateFormatter *dateFormatter = NSDate.qh_defaultDateFormatter;
+    dateFormatter.dateFormat = [self qh_formatterTypeStringWith:GQHDateTimeFormatterTypeHyphenYearMonthDay];
+    
+    // 结果
+    NSMutableArray *dayArray = [NSMutableArray array];
+    
+    for (NSInteger i = (1 - count); i < 1; i++) {
+        
+        // 过去的某一天
+        NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday) fromDate:[NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * i]];
+        NSDate *date = [calendar dateFromComponents:components];
+        
+        // 获取年月日
+        NSString *dayString = [dateFormatter stringFromDate:date];
+        
+        [dayArray addObject:dayString];
+    }
+    
+    return dayArray;
+}
+
 /// 枚举类型值(NSString)
 /// @param formatterType 时间格式化样式
 + (NSString *)qh_formatterTypeStringWith:(GQHDateTimeFormatterType)formatterType {
