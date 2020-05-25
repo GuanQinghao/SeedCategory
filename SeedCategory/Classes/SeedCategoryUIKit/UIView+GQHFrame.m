@@ -447,57 +447,53 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
 
 /// 查询子视图(子视图的子视图)
 /// @param className 子视图类名字符串
-- (UIView *)qh_subViewOfClassName:(NSString *)className {
+- (NSArray<__kindof UIView *> *)qh_subviewsOfClassName:(NSString *)className {
     
-    for (UIView *subView in self.subviews) {
+    NSMutableArray *subviewArray = [NSMutableArray array];
+    
+    for (UIView *subview in self.subviews) {
         
-        if ([NSStringFromClass(subView.class) isEqualToString:className]) {
+        if ([NSStringFromClass(subview.class) isEqualToString:className]) {
             
-            return subView;
+            [subviewArray addObject:subview];
         }
         
         // 子视图的子视图
-        UIView *result = [subView qh_subViewOfClassName:className];
-        if (result) {
-            
-            return result;
-        }
+        [subviewArray addObjectsFromArray:[subview qh_subviewsOfClassName:className]];
     }
     
-    return nil;
+    return [subviewArray copy];
 }
 
 /// 查询子视图(子视图的子视图)
 /// @param classType 子视图类型
-- (UIView *)qh_subViewOfClassType:(Class)classType {
+- (NSArray<__kindof UIView *> *)qh_subviewsOfClassType:(Class)classType {
     
-    for (UIView *subView in self.subviews) {
+    NSMutableArray *subviewArray = [NSMutableArray array];
+    
+    for (UIView *subview in self.subviews) {
         
-        if ([subView isKindOfClass:classType]) {
+        if ([subview isKindOfClass:classType]) {
             
-            if ([subView isKindOfClass: [UIScrollView class]]) {
+            if ([subview isKindOfClass: [UIScrollView class]]) {
                 
-                NSString *classNameString = NSStringFromClass(subView.class);
+                NSString *classNameString = NSStringFromClass(subview.class);
                 
-                if ([subView.superview isKindOfClass:[UITableView class]] == NO && [subView.superview isKindOfClass:[UITableViewCell class]] == NO && [classNameString hasPrefix:@"_"] == NO) {
+                if ([subview.superview isKindOfClass:[UITableView class]] == NO && [subview.superview isKindOfClass:[UITableViewCell class]] == NO && [classNameString hasPrefix:@"_"] == NO) {
                     
-                    return subView;
+                    [subviewArray addObject:subview];
                 }
             } else {
                 
-                return subView;
+                [subviewArray addObject:subview];
             }
         }
         
         // 子视图的子视图
-        UIView *result = [subView qh_subViewOfClassType:classType];
-        if (result) {
-            
-            return result;
-        }
+        [subviewArray addObjectsFromArray:[subview qh_subviewsOfClassType:classType]];
     }
     
-    return nil;
+    return [subviewArray copy];
 }
 
 /// 查询父视图
@@ -549,7 +545,7 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
         }
         
         next = [next nextResponder];
-    } while (next != nil);
+    } while (next);
     
     return nil;
 }

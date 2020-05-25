@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (GQHImage)
 
 /// 将彩色图片转换成灰度图片
-- (UIImage *)qh_imageWithGrayscale;
+- (UIImage * _Nullable)qh_imageWithGrayscale;
 
 /// 旋转图片
 /// @param degrees 旋转角度
@@ -43,12 +43,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获取纯色图片
 /// @param color 颜色
-+ (UIImage *)qh_imageWithColor:(UIColor *)color;
++ (UIImage * _Nullable)qh_imageWithColor:(UIColor *)color;
 
 /// 获取指定大小的纯色图片
 /// @param color 颜色
 /// @param size 指定大小
-+ (UIImage *)qh_imageWithColor:(UIColor *)color size:(CGSize)size;
++ (UIImage * _Nullable)qh_imageWithColor:(UIColor *)color size:(CGSize)size;
 
 /// 截图/截屏
 /// @param view 源视图

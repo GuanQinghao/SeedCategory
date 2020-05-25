@@ -265,10 +265,9 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     
     // 添加日期
-    NSDateComponents *components = [[NSDateComponents alloc] init];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY-MM-dd"];
-    components = [calendar components:unit fromDate:date];
+    NSDateComponents *components = [calendar components:unit fromDate:date];
     
     return [components weekday];
 }

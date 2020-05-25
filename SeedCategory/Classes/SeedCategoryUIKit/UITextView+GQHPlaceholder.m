@@ -18,9 +18,9 @@
     
     objc_setAssociatedObject(self, @selector(qh_placeholder), qh_placeholder, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
-    UILabel *placeHolderLabel = [[UILabel alloc] init];
+    UILabel *placeHolderLabel = [self valueForKey:@"_placeholderLabel"];
     
-    if ((placeHolderLabel = [self valueForKey:@"_placeholderLabel"])) {
+    if (placeHolderLabel) {
         
         // 存在Label
         placeHolderLabel.text = qh_placeholder;
@@ -52,9 +52,9 @@
     
     objc_setAssociatedObject(self, @selector(setQh_placeholderColor:), qh_placeholderColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    UILabel *placeHolderLabel = [[UILabel alloc] init];
+    UILabel *placeHolderLabel = [self valueForKey:@"_placeholderLabel"];
     
-    if ((placeHolderLabel = [self valueForKey:@"_placeholderLabel"])) {
+    if (placeHolderLabel) {
         
         // 存在Label
         placeHolderLabel.textColor = qh_placeholderColor;

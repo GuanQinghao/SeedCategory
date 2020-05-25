@@ -104,15 +104,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 查询子视图(子视图的子视图)
 /// @param className 子视图类名字符串
-- (UIView *)qh_subViewOfClassName:(NSString *)className;
+- (NSArray<__kindof UIView *> *)qh_subviewsOfClassName:(NSString *)className;
 
 /// 查询子视图(子视图的子视图)
 /// @param classType 子视图类型
-- (UIView *)qh_subViewOfClassType:(Class)classType;
+- (NSArray<__kindof UIView *> *)qh_subviewsOfClassType:(Class)classType;
 
 /// 查询父视图
 /// @param classType 父视图类型
-- (UIView *)qh_superviewOfClassType:(Class)classType;
+- (UIView * _Nullable)qh_superviewOfClassType:(Class)classType;
 
 @end
 
@@ -126,10 +126,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (GQHController)
 
 /// 视图的视图控制器
-- (UIViewController *)qh_currentViewController;
+- (UIViewController * _Nullable)qh_currentViewController;
 
 /// 视图导航控制器
-- (UINavigationController *)qh_navigationController;
+- (UINavigationController * _Nullable)qh_navigationController;
 
 @end
 

@@ -15,11 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 手机号隐藏格式化 (保留前三位后四位)
 /// @param mobile 手机号
-+ (NSString *)qh_formatterSecretStringWithMobile:(NSString *)mobile;
++ (NSString * _Nullable)qh_formatterSecretStringWithMobile:(NSString *)mobile;
 
 /// 身份证/银行卡/信用卡格式化 (保留前四位后四位)
 /// @param cardNumber 身份证/银行卡/信用卡卡号
-+ (NSString *)qh_formatterSecretStringWithCardNumber:(NSString *)cardNumber;
++ (NSString * _Nullable)qh_formatterSecretStringWithCardNumber:(NSString *)cardNumber;
 
 /// 数量转中文单位
 /// @param value 数量值

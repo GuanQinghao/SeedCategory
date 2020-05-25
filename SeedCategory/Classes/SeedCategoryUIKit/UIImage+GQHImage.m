@@ -302,6 +302,7 @@
     
     UIImage *result = [UIImage imageWithCGImage:scaledImage];
     
+    CGColorSpaceRelease(colorSpace);
     CGContextRelease(bitmapRef);
     CGImageRelease(bitmapImage);
     CGImageRelease(scaledImage);
@@ -518,6 +519,7 @@
     // 释放内存
     CGColorSpaceRelease(colorSpaceRef);
     CGContextRelease(contextRef);
+    CGImageRelease(newImageRef);
     free(pixels);
     
     return newImage;
