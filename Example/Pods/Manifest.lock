@@ -1,7 +1,7 @@
 PODS:
   - Expecta (1.0.6)
   - MBProgressHUD (1.2.0)
-  - SeedCategory (0.0.7):
+  - SeedCategory (0.0.8):
     - MBProgressHUD
   - Specta (1.0.7)
 
@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  SeedCategory: c69d8dec9642914cf25f296753b777291a9cc5ed
+  SeedCategory: bf4fb4384c9d12ed5458f9d40031aba80889aac0
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
 PODFILE CHECKSUM: c765bca339fc596dc3269dc481c4cd097307f231

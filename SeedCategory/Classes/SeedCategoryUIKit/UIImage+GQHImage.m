@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+GQHImage.h"
+#import <AVFoundation/AVFoundation.h>
 #import <ImageIO/ImageIO.h>
 
 
@@ -325,6 +326,30 @@
     NSData *data = UIImageJPEGRepresentation(self, 1.0f);
     
     return [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
+/// 视频某个时刻的屏幕快照
+/// @param URLString 网络视频地址
+/// @param interval 时刻(秒)
++ (UIImage *)qh_screenshotForVideo:(NSString *)URLString at:(NSTimeInterval)interval {
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL URLWithString:URLString] options:nil];
+    AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    generator.appliesPreferredTrackTransform = YES;
+    generator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+    
+    NSError *error = nil;
+    CGImageRef imageRef = [generator copyCGImageAtTime:CMTimeMakeWithSeconds(interval, 60) actualTime:NULL error:&error];
+    if (!imageRef) {
+        
+        NSLog(@"%@",error.localizedDescription);
+        return nil;
+    }
+    
+    UIImage *screenshot = [[UIImage alloc] initWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return screenshot;
 }
 
 @end

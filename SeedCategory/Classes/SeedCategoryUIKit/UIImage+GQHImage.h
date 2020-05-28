@@ -82,6 +82,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图片转base64编码
 - (NSString *)qh_base64;
 
+/// 视频某个时刻的屏幕快照
+/// @param URLString 网络视频地址
+/// @param interval 时刻(秒)
++ (UIImage * _Nullable)qh_screenshotForVideo:(NSString *)URLString at:(NSTimeInterval)interval;
+
 @end
 
 NS_ASSUME_NONNULL_END
