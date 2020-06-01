@@ -9,22 +9,28 @@
 #import <Foundation/Foundation.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSString (GQHSafety)
 
 /// 安全截取字符串
 /// @param from 截取起始位置
-- (NSString *)qh_safetySubstringFromIndex:(NSUInteger)from;
+- (nullable NSString *)qh_safetySubstringFromIndex:(NSUInteger)from;
 
 /// 安全截取字符串
 /// @param to 截取结束位置
-- (NSString *)qh_safetySubstringToIndex:(NSUInteger)to;
+- (nullable NSString *)qh_safetySubstringToIndex:(NSUInteger)to;
 
 /// 安全截取字符串
 /// @param range 截取range范围
-- (NSString *)qh_safetySubstringWithRange:(NSRange)range;
+- (nullable NSString *)qh_safetySubstringWithRange:(NSRange)range;
 
 @end
 
+NS_ASSUME_NONNULL_END
+
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableString (GQHSafety)
 
@@ -46,3 +52,5 @@
 - (void)qh_safetyDeleteCharactersInRange:(NSRange)range;
 
 @end
+
+NS_ASSUME_NONNULL_END

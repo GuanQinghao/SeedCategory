@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 路由响应链
 /// @param identifier 响应标识
 /// @param userInfo 响应信息
-- (void)qh_routerEventWithIdentifier:(NSString *)identifier userInfo:(NSDictionary *)userInfo;
+- (void)qh_routerEventWithIdentifier:(NSString *)identifier userInfo:(nullable NSDictionary *)userInfo;
 
 @end
 

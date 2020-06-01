@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param message 弹窗信息
 /// @param handler 弹窗操作处理
 /// @param completion 弹窗完成后处理
-- (void)qh_alertWithTitle:(NSString *_Nullable)title message:(NSString *_Nullable)message handler:(void (^ _Nullable)(UIAlertAction * _Nullable action))handler completion:(void (^ _Nullable)(void))completion;
+- (void)qh_alertWithTitle:(nullable NSString *)title message:(nullable NSString *)message handler:(nullable void (^)(UIAlertAction * _Nullable action))handler completion:(nullable void (^)(void))completion;
 
 /// 双操作警告弹窗视图 (自定义|取消)
 /// @param title 弹窗标题
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param actionTitle 弹窗操作标题
 /// @param handler 弹窗操作处理
 /// @param completion 弹窗完成后处理
-- (void)qh_alertWithTitle:(NSString *_Nullable)title message:(NSString *_Nullable)message actionTitle:(NSString *_Nullable)actionTitle handler:(void (^ _Nullable)(UIAlertAction * _Nullable action))handler completion:(void (^ _Nullable)(void))completion;
+- (void)qh_alertWithTitle:(nullable NSString *)title message:(nullable NSString *)message actionTitle:(nullable NSString *)actionTitle handler:(nullable void (^)(UIAlertAction * _Nullable action))handler completion:(nullable void (^)(void))completion;
 
 /// 多操作警告弹窗视图
 /// @param title 弹窗标题
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param actionTitles 弹窗操作标题数组
 /// @param handler 弹窗操作处理 (根据序号分别处理)
 /// @param completion 弹窗完成后处理
-- (void)qh_alertWithTitle:(NSString *_Nullable)title message:(NSString *_Nullable)message actionTitles:(NSArray<NSString *> *_Nullable)actionTitles handler:(void (^ _Nullable)(UIAlertAction * _Nullable action, NSUInteger index))handler completion:(void (^ _Nullable)(void))completion;
+- (void)qh_alertWithTitle:(nullable NSString *)title message:(nullable NSString *)message actionTitles:(nullable NSArray<NSString *> *)actionTitles handler:(nullable void (^)(UIAlertAction * _Nullable action, NSUInteger index))handler completion:(nullable void (^)(void))completion;
 
 /// 带输入框的警告弹窗
 /// @param title 弹窗标题
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param inputHandler 输入处理
 /// @param actionHandler 弹窗操作处理
 /// @param completion 弹窗完成后处理
-- (void)qh_alertWithTitle:(NSString *_Nullable)title message:(NSString *_Nullable)message inputHandler:(void (^ __nullable)(UITextField * _Nullable textField))inputHandler actionHandler:(void (^ _Nullable)(UIAlertAction * _Nullable action, UIAlertController * _Nonnull alertController))actionHandler completion:(void (^ _Nullable)(void))completion;
+- (void)qh_alertWithTitle:(nullable NSString *)title message:(nullable NSString *)message inputHandler:(nullable void (^)(UITextField * _Nullable textField))inputHandler actionHandler:(nullable void (^)(UIAlertAction * _Nullable action, UIAlertController * _Nonnull alertController))actionHandler completion:(nullable void (^)(void))completion;
 
 @end
 

@@ -40,22 +40,22 @@ NS_ASSUME_NONNULL_BEGIN
 /// 拨打电话(弹出框提示) (使用前检查类型，非iPhone不能拨打电话)
 /// @param mobile 手机号
 /// @param handler 回调处理
-- (void)qh_dialWithMobile:(NSString * _Nonnull)mobile handler:(void(^ _Nullable)(BOOL success))handler;
+- (void)qh_dialWithMobile:(nullable NSString *)mobile handler:(nullable void (^)(BOOL success))handler;
 
 /// 发信息 (使用前检查类型，非iPhone不能发送信息)
 /// @param mobile 手机号
 /// @param handler 回调处理
-- (void)qh_smsWithMobile:(NSString * _Nonnull)mobile handler:(void(^ _Nullable)(BOOL success))handler;
+- (void)qh_smsWithMobile:(nullable NSString *)mobile handler:(nullable void (^)(BOOL success))handler;
 
 /// 发送邮件 (使用前检查网络、地址规则和本机邮箱地址设置)
 /// @param email 邮箱地址
 /// @param handler 回调处理
-- (void)qh_mailWithEmail:(NSString *)email handler:(void(^ _Nullable)(BOOL success))handler;
+- (void)qh_mailWithEmail:(nullable NSString *)email handler:(nullable void (^)(BOOL success))handler;
 
 /// 在iTunes中打开app (使用前检查网络)
 /// @param appID 商店中的应用程序appID
 /// @param handler 回调处理
-- (void)qh_iTunesAppWithAppID:(NSString *)appID handler:(void(^ _Nullable)(BOOL success))handler;
+- (void)qh_iTunesAppWithAppID:(nullable NSString *)appID handler:(nullable void (^)(BOOL success))handler;
 
 @end
 

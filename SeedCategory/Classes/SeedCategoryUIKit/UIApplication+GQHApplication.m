@@ -39,7 +39,7 @@
 /// 拨打电话(弹出框提示) (使用前检查类型，非iPhone不能拨打电话)
 /// @param mobile 手机号
 /// @param handler 回调处理
-- (void)qh_dialWithMobile:(NSString * _Nonnull)mobile handler:(void(^ _Nullable)(BOOL success))handler {
+- (void)qh_dialWithMobile:(NSString *)mobile handler:(void (^)(BOOL))handler {
     
     // telprompt 可以上架
     NSString *URLString = [NSString stringWithFormat:@"telprompt:%@",mobile];
@@ -57,7 +57,7 @@
 /// 发信息 (使用前检查类型，非iPhone不能发送信息)
 /// @param mobile 手机号
 /// @param handler 回调处理
-- (void)qh_smsWithMobile:(NSString * _Nonnull)mobile handler:(void(^ _Nullable)(BOOL success))handler {
+- (void)qh_smsWithMobile:(NSString *)mobile handler:(void (^)(BOOL))handler {
     
     NSString *URLString = [NSString stringWithFormat:@"sms:%@",mobile];
     
@@ -74,7 +74,7 @@
 /// 发送邮件 (使用前检查网络、地址规则和本机邮箱地址设置)
 /// @param email 邮箱地址
 /// @param handler 回调处理
-- (void)qh_mailWithEmail:(NSString *)email handler:(void(^ _Nullable)(BOOL success))handler {
+- (void)qh_mailWithEmail:(NSString *)email handler:(void (^)(BOOL))handler {
     
     NSString *URLString = [NSString stringWithFormat:@"mailto:%@",email];
     
@@ -91,7 +91,7 @@
 /// 在iTunes中打开app (使用前检查网络)
 /// @param appID 商店中的应用程序appID
 /// @param handler 回调处理
-- (void)qh_iTunesAppWithAppID:(NSString *)appID handler:(void(^ _Nullable)(BOOL success))handler {
+- (void)qh_iTunesAppWithAppID:(NSString *)appID handler:(void (^)(BOOL))handler {
     
     NSString *URLString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id%@?mt=8",appID];
     

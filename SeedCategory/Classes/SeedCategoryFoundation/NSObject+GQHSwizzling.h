@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSObject (GQHSwizzling)
 
 /// 设置方法的实现
@@ -32,3 +34,5 @@
 + (BOOL)qh_exchangeClassMethod:(SEL)originalSel withMethod:(SEL)alterSel;
 
 @end
+
+NS_ASSUME_NONNULL_END

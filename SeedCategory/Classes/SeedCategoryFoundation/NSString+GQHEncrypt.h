@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// MD5加密 32位小写16进制
 /// @param string 需要加密的字符串
-+ (NSString *)qh_encryptWithMD5:(NSString *)string;
++ (nullable NSString *)qh_encryptWithMD5:(NSString *)string;
 
 @end
 

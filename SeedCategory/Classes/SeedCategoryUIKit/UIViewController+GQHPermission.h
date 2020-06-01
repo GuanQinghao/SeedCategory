@@ -46,6 +46,7 @@ typedef NS_ENUM(NSInteger, GQHUserType) {
     GQHUserTypeManager,
 };
 
+
 /// 用户状态
 typedef NS_ENUM(NSInteger, GQHUserStatusType) {
     
@@ -56,6 +57,7 @@ typedef NS_ENUM(NSInteger, GQHUserStatusType) {
     /// 非初次登录
     GQHUserStatusTypeSignIn,
 };
+
 
 /// 用户权限
 typedef NS_ENUM(NSInteger, GQHAccessPermissionType) {
@@ -70,6 +72,9 @@ typedef NS_ENUM(NSInteger, GQHAccessPermissionType) {
     GQHAccessPermissionTypeManagement,
 };
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIViewController (GQHPermission)
 
 /// 检查用户类型
@@ -80,6 +85,11 @@ typedef NS_ENUM(NSInteger, GQHAccessPermissionType) {
 - (GQHAccessPermissionType)qh_checkAccessPermissionType;
 
 /// 检查用户访问权限
-- (void)qh_checkAccessPermissionType:(GQHAccessPermissionType)accessPermissionType allowed:(void(^)(void))allowedBlock unallowed:(void(^)(void))unallowedBlock;
+/// @param accessPermissionType 用户访问权限类型
+/// @param allowedBlock 允许访问处理
+/// @param unallowedBlock 不允许访问处理
+- (void)qh_checkAccessPermissionType:(GQHAccessPermissionType)accessPermissionType allowed:(nullable void(^)(void))allowedBlock unallowed:(nullable void(^)(void))unallowedBlock;
 
 @end
+
+NS_ASSUME_NONNULL_END

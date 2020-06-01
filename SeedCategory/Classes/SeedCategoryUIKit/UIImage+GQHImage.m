@@ -443,7 +443,7 @@
 /// 添加图片水印
 /// @param rect 水印的位置
 /// @param anImage 图片的水印
-- (nonnull UIImage *)qh_watermarkInRect:(CGRect)rect image:(nullable UIImage *)anImage {
+- (UIImage *)qh_watermarkInRect:(CGRect)rect image:(UIImage *)anImage {
     
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
     [self drawAtPoint:CGPointZero];
@@ -458,7 +458,7 @@
 /// 添加文字水印
 /// @param rect 水印位置
 /// @param aString 图片的文字水印
-- (nonnull UIImage *)qh_watermarkInRect:(CGRect)rect string:(nullable NSAttributedString *)aString {
+- (UIImage *)qh_watermarkInRect:(CGRect)rect string:(NSAttributedString *)aString {
     
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
     [self drawAtPoint:CGPointZero];
@@ -471,7 +471,7 @@
 }
 
 /// 显示图片水印 - 原图水印要求: 深色深且高透明度
-- (nonnull UIImage *)qh_watermarkCanVisible {
+- (UIImage *)qh_watermarkCanVisible {
     
     // 所有像素点 32位整形指针
     UInt32 *pixels;

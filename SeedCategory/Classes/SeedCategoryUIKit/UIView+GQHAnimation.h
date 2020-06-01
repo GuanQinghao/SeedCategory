@@ -25,6 +25,9 @@ typedef NS_ENUM(NSUInteger, GQHAnimationScaledType) {
     GQHAnimationScaledTypeOutIn
 };
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIView (GQHAnimation)
 
 /// 弹性振动动画
@@ -38,3 +41,5 @@ typedef NS_ENUM(NSUInteger, GQHAnimationScaledType) {
 + (void)qh_animateScaledWithLayer:(CALayer *)layer type:(GQHAnimationScaledType)type;
 
 @end
+
+NS_ASSUME_NONNULL_END

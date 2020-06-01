@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UITextView (GQHPlaceholder)
 
 /// 占位文字
@@ -18,3 +20,5 @@
 @property (nonatomic, strong) IBInspectable UIColor *qh_placeholderColor;
 
 @end
+
+NS_ASSUME_NONNULL_END

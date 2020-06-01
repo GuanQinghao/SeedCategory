@@ -14,7 +14,7 @@
 
 /// JSON字符串转字典
 /// @param JSON JSON字符串
-+ (NSDictionary*)qh_dictionaryWithJSON:(NSString*)JSON {
++ (NSDictionary *)qh_dictionaryWithJSON:(NSString *)JSON {
     
     if (JSON && JSON.length > 0) {
         
@@ -25,13 +25,13 @@
         if (error) {
             
             NSAssert(error, @"解析失败!");
-            return nil;
+            return [NSDictionary dictionary];
         }
         
         return dictionary;
     }
     
-    return nil;
+    return [NSDictionary dictionary];
 }
 
 /// 字典转JSON字符串

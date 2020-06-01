@@ -16,7 +16,7 @@
 /// @param message 弹窗信息
 /// @param handler 弹窗操作处理
 /// @param completion 弹窗完成后处理
-- (void)qh_alertWithTitle:(NSString *)title message:(NSString *)message handler:(void (^)(UIAlertAction * _Nullable))handler completion:(void (^)(void))completion {
+- (void)qh_alertWithTitle:(NSString *)title message:(NSString *)message handler:(void (^)(UIAlertAction * _Nonnull))handler completion:(void (^)(void))completion {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message: message preferredStyle:UIAlertControllerStyleAlert];
     

@@ -9,14 +9,20 @@
 #import <Foundation/Foundation.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSDictionary (GQHSafety)
 
 /// 获取任意key值的对象
 /// @param key 字典key值
-- (id)qh_safetyObjectForKey:(NSString *)key;
+- (nullable id)qh_safetyObjectForKey:(NSString *)key;
 
 @end
 
+NS_ASSUME_NONNULL_END
+
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableDictionary (GQHSafety)
 
@@ -26,3 +32,5 @@
 - (void)qh_safetySetObject:(id)object forKey:(id)key;
 
 @end
+
+NS_ASSUME_NONNULL_END

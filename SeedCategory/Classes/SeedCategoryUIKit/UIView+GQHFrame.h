@@ -112,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 查询父视图
 /// @param classType 父视图类型
-- (UIView * _Nullable)qh_superviewOfClassType:(Class)classType;
+- (nullable UIView *)qh_superviewOfClassType:(Class)classType;
 
 @end
 
@@ -126,10 +126,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (GQHController)
 
 /// 视图的视图控制器
-- (UIViewController * _Nullable)qh_currentViewController;
+- (nullable UIViewController *)qh_currentViewController;
 
 /// 视图导航控制器
-- (UINavigationController * _Nullable)qh_navigationController;
+- (nullable UINavigationController *)qh_navigationController;
 
 @end
 

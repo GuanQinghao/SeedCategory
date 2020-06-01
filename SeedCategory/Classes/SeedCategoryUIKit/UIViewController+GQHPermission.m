@@ -76,7 +76,10 @@
 }
 
 /// 检查用户访问权限
-- (void)qh_checkAccessPermissionType:(GQHAccessPermissionType)accessPermissionType allowed:(void(^)(void))allowedBlock unallowed:(void(^)(void))unallowedBlock {
+/// @param accessPermissionType 用户访问权限类型
+/// @param allowedBlock 允许访问处理
+/// @param unallowedBlock 不允许访问处理
+- (void)qh_checkAccessPermissionType:(GQHAccessPermissionType)accessPermissionType allowed:(void (^)(void))allowedBlock unallowed:(void (^)(void))unallowedBlock {
     
     if ([self qh_checkAccessPermissionType] >= accessPermissionType) {
         

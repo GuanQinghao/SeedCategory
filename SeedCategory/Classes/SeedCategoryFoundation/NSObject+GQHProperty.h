@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSObject (GQHProperty)
 
 /// 控制台输出属性代码
@@ -16,3 +18,5 @@
 + (void)qh_outputPropertyCodeWithDictionary:(NSDictionary *)dictionary;
 
 @end
+
+NS_ASSUME_NONNULL_END

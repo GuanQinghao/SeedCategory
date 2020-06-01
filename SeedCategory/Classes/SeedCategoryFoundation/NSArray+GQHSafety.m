@@ -26,7 +26,7 @@
 
 /// 获取任意索引的数组对象
 /// @param index 任意索引值
-- (nullable id)qh_safetyObjectAtIndex:(NSUInteger)index {
+- (id)qh_safetyObjectAtIndex:(NSUInteger)index {
     
     if (index < self.count) {
         

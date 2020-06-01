@@ -26,6 +26,8 @@ typedef NS_ENUM(NSUInteger, GQHButtonGraphicLayoutStyle) {
 };
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIButton (GQHButton)
 
 /// 按钮图文排版样式 (枚举)
@@ -38,3 +40,5 @@ typedef NS_ENUM(NSUInteger, GQHButtonGraphicLayoutStyle) {
 @property (nonatomic, assign) NSTimeInterval qh_timeIntervalOnclick;
 
 @end
+
+NS_ASSUME_NONNULL_END
