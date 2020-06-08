@@ -77,6 +77,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param object 任意对象
 + (id)qh_filterNull:(id)object;
 
+/// 延迟执行
+/// @param seconds 延迟时间
+/// @param handler 延迟执行
++ (void)qh_delay:(double)seconds executing:(nullable void (^)(void))handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

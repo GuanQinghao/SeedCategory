@@ -340,4 +340,21 @@
     }
 }
 
+/// 延迟执行
+/// @param seconds 延迟时间
+/// @param handler 延迟执行
++ (void)qh_delay:(double)seconds executing:(nullable void (^)(void))handler {
+    
+    seconds = (seconds < 0.0f) ? seconds : 0.0f;
+    
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^(void){
+        
+        if (handler) {
+            
+            handler();
+        }
+    });
+}
+
 @end
