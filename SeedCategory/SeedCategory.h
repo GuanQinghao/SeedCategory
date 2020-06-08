@@ -9,7 +9,7 @@
 #define SeedCategory_h
 
 
-//MARK:Foundation
+//MARK:FoundationKit
 #import "NSArray+GQHSafety.h"
 #import "NSDate+GQHFormatter.h"
 #import "NSDictionary+GQHJSON.h"
