@@ -8,13 +8,14 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SeedCategory'
-    s.version          = '0.0.10'
+    s.version          = '0.0.11'
     s.summary          = 'Objective-C 常用分类'
     s.homepage         = 'https://github.com/GuanQinghao/SeedCategory'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'GuanQinghao' => 'qinghaoguan@163.com' }
     s.source           = { :git => 'https://github.com/GuanQinghao/SeedCategory.git', :tag => s.version.to_s }
     s.ios.deployment_target = '11.0'
+    
     s.source_files = 'SeedCategory/SeedCategory.h'
     
     s.subspec 'SeedCategoryFoundation' do |ss|

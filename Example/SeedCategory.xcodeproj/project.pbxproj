@@ -134,9 +134,9 @@
 			children = (
 				6003F59C195388D20070C39A /* AppDelegate.h */,
 				6003F59D195388D20070C39A /* AppDelegate.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* GQHViewController.h */,
 				6003F5A6195388D20070C39A /* GQHViewController.m */,
+				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -249,7 +249,7 @@
 				ORGANIZATIONNAME = GuanQinghao;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = 563G9T67Z2;
+						DevelopmentTeam = JM52XZKNAA;
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -548,7 +548,7 @@
 			baseConfigurationReference = 3BF16C0C77073535DB8DF8AE /* Pods-SeedCategory_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 563G9T67Z2;
+				DEVELOPMENT_TEAM = JM52XZKNAA;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SeedCategory/SeedCategory-Prefix.pch";
 				INFOPLIST_FILE = "SeedCategory/SeedCategory-Info.plist";
@@ -565,7 +565,7 @@
 			baseConfigurationReference = BEA5796AA83FFA2B0F876ECF /* Pods-SeedCategory_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 563G9T67Z2;
+				DEVELOPMENT_TEAM = JM52XZKNAA;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SeedCategory/SeedCategory-Prefix.pch";
 				INFOPLIST_FILE = "SeedCategory/SeedCategory-Info.plist";
