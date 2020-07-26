@@ -1,13 +1,13 @@
 PODS:
   - Expecta (1.0.6)
   - MBProgressHUD (1.2.0)
-  - SeedCategory (0.0.10):
+  - SeedCategory (0.0.11):
     - MBProgressHUD
-    - SeedCategory/SeedCategoryFoundation (= 0.0.10)
-    - SeedCategory/SeedCategoryUIKit (= 0.0.10)
-  - SeedCategory/SeedCategoryFoundation (0.0.10):
+    - SeedCategory/SeedCategoryFoundation (= 0.0.11)
+    - SeedCategory/SeedCategoryUIKit (= 0.0.11)
+  - SeedCategory/SeedCategoryFoundation (0.0.11):
     - MBProgressHUD
-  - SeedCategory/SeedCategoryUIKit (0.0.10):
+  - SeedCategory/SeedCategoryUIKit (0.0.11):
     - MBProgressHUD
   - Specta (1.0.7)
 
@@ -29,9 +29,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  SeedCategory: 27bb328b9f780f95a60f6c69c6f06d10c5feb2e1
+  SeedCategory: 3f7052b05de07807d68b2f640066c47f323dd2a5
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
 PODFILE CHECKSUM: b486e70c09eb21623f1684900764aa88ff943fff
 
 COCOAPODS: 1.9.1
+ 
