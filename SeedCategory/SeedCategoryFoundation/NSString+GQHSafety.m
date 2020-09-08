@@ -9,62 +9,6 @@
 #import "NSString+GQHSafety.h"
 
 
-@implementation NSString (GQHSafety)
-
-/// 安全截取字符串
-/// @param from 截取起始位置
-- (NSString *)qh_safetySubstringFromIndex:(NSUInteger)from {
-    
-    if (from < self.length) {
-        
-        return [self substringFromIndex:from];
-    } else {
-        
-        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
-        return nil;
-    }
-}
-
-/// 安全截取字符串
-/// @param to 截取结束位置
-- (NSString *)qh_safetySubstringToIndex:(NSUInteger)to {
-    
-    if (to < self.length) {
-        
-        return [self substringToIndex:to];
-    } else {
-        
-        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
-        return nil;
-    }
-}
-
-/// 安全截取字符串
-/// @param range 截取range范围
-- (NSString *)qh_safetySubstringWithRange:(NSRange)range {
-    
-    NSUInteger location = range.location;
-    NSUInteger length = range.length;
-    
-    if (location < self.length) {
-        
-        if (location + length <= self.length) {
-            
-            return [self substringWithRange:range];
-        } else {
-            
-            length = self.length - location;
-            return [self substringWithRange:NSMakeRange(location, length)];
-        }
-    } else {
-        
-        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
-        return nil;
-    }
-}
-
-@end
-
 
 @implementation NSMutableString (GQHSafety)
 

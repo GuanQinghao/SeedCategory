@@ -18,10 +18,8 @@
 #import "NSObject+GQHProperty.h"
 #import "NSObject+GQHSwizzling.h"
 #import "NSObject+GQHValidator.h"
-#import "NSString+GQHEncrypt.h"
-#import "NSString+GQHFormatter.h"
+#import "NSString+Category.h"
 #import "NSString+GQHSafety.h"
-#import "NSString+GQHVersion.h"
 
 
 //MARK:UIKit
