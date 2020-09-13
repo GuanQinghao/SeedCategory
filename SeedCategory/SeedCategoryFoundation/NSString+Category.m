@@ -10,8 +10,6 @@
 
 @implementation NSString (Category)
 
-
-
 /// 手机号隐藏格式化 (保留前三位后四位)
 /// @param mobile 手机号
 + (NSString *)qh_formatterSecretStringWithMobile:(NSString *)mobile {
@@ -77,20 +75,6 @@
     }
 }
 
-/// 计算文本的大小
-/// @param font 文本字体
-/// @param maxSize 最大size
-- (CGSize)qh_formatterSizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize {
-    
-    NSDictionary *attributeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
-    NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
-    
-    CGRect rect = [self boundingRectWithSize:maxSize options:options attributes:attributeDictionary context:nil];
-    CGSize size = CGSizeMake(ceil(rect.size.width), ceil(rect.size.height));
-    
-    return size;
-}
-
 /// MD5加密 32位小写16进制
 /// @param string 需要加密的字符串
 + (NSString *)qh_encryptWithMD5:(NSString *)string {
@@ -122,6 +106,20 @@
     }
     
     return cipherString;
+}
+
+/// 计算文本的大小
+/// @param font 文本字体
+/// @param maxSize 最大size
+- (CGSize)qh_formatterSizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize {
+    
+    NSDictionary *attributeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+    NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
+    
+    CGRect rect = [self boundingRectWithSize:maxSize options:options attributes:attributeDictionary context:nil];
+    CGSize size = CGSizeMake(ceil(rect.size.width), ceil(rect.size.height));
+    
+    return size;
 }
 
 /// 是否大于某一版本
@@ -237,6 +235,116 @@
         NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
         return nil;
     }
+}
+
+@end
+
+
+@implementation NSMutableString (Category)
+
+/// 指定位置安全插入字符串
+/// @param aString 要插入的字符串
+/// @param location 指定位置
+- (void)qh_safetyInsertString:(NSString *)aString atIndex:(NSUInteger)location {
+    
+    if (aString && location < self.length) {
+        
+        [self insertString:aString atIndex:location];
+    } else {
+        
+        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
+        return;
+    }
+}
+
+/// 字符串后安全拼接字符串
+/// @param aString 要拼接的字符串
+- (void)qh_safetyAppendString:(NSString *)aString {
+    
+    if (aString) {
+        
+        [self appendString:aString];
+    } else {
+        
+        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
+        return;
+    }
+}
+
+/// 安全修改可变字符串的字符内容
+/// @param aString 要修改的字符串
+- (void)qh_safetySetString:(NSString *)aString {
+    
+    if (aString) {
+        
+        [self setString:aString];
+    } else {
+        
+        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
+        return;
+    }
+}
+
+/// 安全删除区间内的字符
+/// @param range 要删除的字符串range范围
+- (void)qh_safetyDeleteCharactersInRange:(NSRange)range {
+    
+    NSUInteger location = range.location;
+    NSUInteger length = range.length;
+    
+    if (location < self.length) {
+        
+        if (location + length <= self.length) {
+            
+            [self deleteCharactersInRange:range];
+        } else {
+            
+            length = self.length - location;
+            [self deleteCharactersInRange:NSMakeRange(location, length)];
+        }
+    } else {
+        
+        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
+        return;
+    }
+}
+
+@end
+
+
+@implementation NSMutableAttributedString (Category)
+
+/// 属性字符串修改指定字符串属性
+/// @param string 指定的字符串
+/// @param font 新属性字体
+/// @param color 新属性字体颜色
+- (NSMutableAttributedString *)qh_attributedStringBy:(NSString *)string withFont:(UIFont *)font color:(UIColor *)color {
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+    NSRange range = [self.string rangeOfString:string];
+    [attributedString addAttribute:NSFontAttributeName value:font range:range];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:color range:range];
+    
+    return attributedString;
+}
+
+/// 字符串添加缩进
+/// @param string 字符串
+/// @param head 头部缩进
+/// @param tail 尾部缩进(>0)
++ (NSMutableAttributedString *)qh_attributedStringWith:(NSString *)string headIndent:(CGFloat)head tailIndent:(CGFloat)tail {
+    
+    NSMutableParagraphStyle *style = [NSParagraphStyle defaultParagraphStyle].mutableCopy;
+    // 对齐方式
+    style.alignment = NSTextAlignmentJustified;
+    // 首行缩进
+    style.firstLineHeadIndent = head;
+    // 头部缩进
+    style.headIndent = head;
+    // 尾部缩进
+    style.tailIndent = -tail;
+    
+    return [[NSMutableAttributedString alloc] initWithString:string attributes:@{NSParagraphStyleAttributeName:style}];
 }
 
 @end
