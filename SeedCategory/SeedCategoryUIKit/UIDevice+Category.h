@@ -1,17 +1,13 @@
 //
-//  UIDevice+GQHDevice.h
-//  Seed
+//  UIDevice+Category.h
+//  Expecta
 //
-//  Created by GuanQinghao on 21/03/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
 #import <UIKit/UIKit.h>
 
-
-/**
- 设备机型
- */
+/// 设备机型
 typedef NS_ENUM(NSUInteger, GQHDeviceModel) {
     
     unknownModel = 0,
@@ -137,10 +133,7 @@ typedef NS_ENUM(NSUInteger, GQHDeviceModel) {
 //TODO:2018
 };
 
-
-/**
- 设备类型
- */
+/// 设备类型
 typedef NS_ENUM(NSUInteger, GQHDeviceType) {
     
     unknownType,
@@ -151,10 +144,9 @@ typedef NS_ENUM(NSUInteger, GQHDeviceType) {
     AppleWatch,
 };
 
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIDevice (GQHDevice)
+@interface UIDevice (Category)
 
 /// 运营商信息(单双卡)(名称-手机国际代号-手机网络代号)
 @property (nonatomic, readonly, copy) NSArray<NSString *> *qh_carriers;

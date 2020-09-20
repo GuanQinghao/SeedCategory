@@ -1,15 +1,49 @@
 //
-//  UIApplication+GQHApplication.m
-//  Seed
+//  UIApplication+Category.m
+//  Expecta
 //
-//  Created by GuanQinghao on 21/03/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
-#import "UIApplication+GQHApplication.h"
+#import "UIApplication+Category.h"
 
+@implementation UIApplication (Category)
 
-@implementation UIApplication (GQHApplication)
+/// documents位置
+- (NSURL *)qh_documentsURL {
+    
+    return [NSFileManager.defaultManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask].lastObject;
+}
+
+/// documents路径
+- (NSString *)qh_documentsPath {
+    
+    return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+}
+
+/// caches位置
+- (NSURL *)qh_cachesURL {
+    
+    return [NSFileManager.defaultManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask].lastObject;
+}
+
+/// caches路径
+- (NSString *)qh_cachesPath {
+    
+    return NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+}
+
+/// library位置
+- (NSURL *)qh_libraryURL {
+    
+    return [NSFileManager.defaultManager URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask].lastObject;
+}
+
+/// library路径
+- (NSString *)qh_libraryPath {
+    
+    return NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
+}
 
 /// 应用程序版本号
 - (NSString *)qh_applicationShortVersion{

@@ -10,23 +10,25 @@
 
 @implementation NSString (Category)
 
+#pragma mark - class method
+
 /// 手机号隐藏格式化 (保留前三位后四位)
 /// @param mobile 手机号
 + (NSString *)qh_formatterSecretStringWithMobile:(NSString *)mobile {
     
     if (mobile) {
         
-        NSString *aMobile = [mobile stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSMutableString *mString = [NSMutableString stringWithString:aMobile];
+        NSString *checked = [mobile stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSMutableString *result = [NSMutableString stringWithString:checked];
         
-        if (11 == mString.length) {
+        if (11 == result.length) {
             
-            for (NSInteger i = 3; i < (mString.length - 4); i++) {
+            for (NSInteger i = 3; i < (result.length - 4); i++) {
                 
-                [mString replaceCharactersInRange:NSMakeRange(i, 1) withString:@"*"];
+                [result replaceCharactersInRange:NSMakeRange(i, 1) withString:@"*"];
             }
             
-            return mString;
+            return result;
         }
     }
     
@@ -107,6 +109,13 @@
     
     return cipherString;
 }
+
+
+
+
+
+
+#pragma mark - instance method
 
 /// 计算文本的大小
 /// @param font 文本字体

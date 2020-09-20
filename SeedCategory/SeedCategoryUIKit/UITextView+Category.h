@@ -1,17 +1,15 @@
 //
-//  UITextView+GQHPlaceholder.h
-//  Seed
+//  UITextView+Category.h
+//  Expecta
 //
-//  Created by Mac on 2018/11/28.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
 #import <UIKit/UIKit.h>
 
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITextView (GQHPlaceholder)
+@interface UITextView (Category)
 
 /// 占位文字
 @property (nonatomic, strong) IBInspectable NSString *qh_placeholder;

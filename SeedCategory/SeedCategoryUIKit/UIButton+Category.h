@@ -1,34 +1,28 @@
 //
-//  UIButton+GQHButton.h
-//  Seed
+//  UIButton+Category.h
+//  Expecta
 //
-//  Created by Mac on 2018/7/5.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
 #import <UIKit/UIKit.h>
 
-
-/**
- 按钮图文排版方式
- 
- - GQHButtonGraphicLayoutStyleVerticalDefault: 上图下字
- - GQHButtonGraphicLayoutStyleVerticalOpposite: 上字下图
- - GQHButtonGraphicLayoutStyleHorizontalDefault: 左图右字
- - GQHButtonGraphicLayoutStyleHorizontalOpposite: 左字右图
- */
+/// 按钮图文排版方式
 typedef NS_ENUM(NSUInteger, GQHButtonGraphicLayoutStyle) {
     
-    GQHButtonGraphicLayoutStyleVerticalDefault = 0,
+    /// 上图下字
+    GQHButtonGraphicLayoutStyleVerticalDefault,
+    /// 上字下图
     GQHButtonGraphicLayoutStyleVerticalOpposite,
+    /// 左图右字
     GQHButtonGraphicLayoutStyleHorizontalDefault,
+    /// 左字右图
     GQHButtonGraphicLayoutStyleHorizontalOpposite
 };
 
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIButton (GQHButton)
+@interface UIButton (Category)
 
 /// 按钮图文排版样式 (枚举)
 @property (nonatomic, assign) GQHButtonGraphicLayoutStyle qh_buttonGraphicLayoutStyle;

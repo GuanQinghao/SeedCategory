@@ -1,20 +1,18 @@
 //
-//  UIDevice+GQHDevice.m
-//  Seed
+//  UIDevice+Category.m
+//  Expecta
 //
-//  Created by GuanQinghao on 21/03/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
-#import "UIDevice+GQHDevice.h"
+#import "UIDevice+Category.h"
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <sys/sysctl.h>
 #import <sys/utsname.h>
 #import <mach/mach.h>
 
-
-@implementation UIDevice (GQHDevice)
+@implementation UIDevice (Category)
 
 /// 运营商信息(单双卡)(名称-手机国际代号-手机网络代号)
 - (NSArray<NSString *> *)qh_carriers {

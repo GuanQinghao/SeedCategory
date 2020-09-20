@@ -1,22 +1,15 @@
 //
-//  UIView+GQHFrame.m
-//  Seed
+//  UIView+Category.m
+//  Expecta
 //
-//  Created by GuanQinghao on 12/01/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
-#import "UIView+GQHFrame.h"
-#import <objc/message.h>
+#import "UIView+Category.h"
 
+@implementation UIView (Category)
 
-/// 全局常量-视图单倍外边距
-CGFloat const GQHFrameSingleMargin = 12.0f;
-/// 全局常量-视图双倍外边距
-CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
-
-
-@implementation UIView (GQHFrame)
+#pragma mark - frame
 
 - (void)setQh_x:(CGFloat)qh_x {
     
@@ -421,20 +414,64 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return 0.0f;
 }
 
-/// 视图切圆角
-/// @param radius 圆角半径
-/// @param corners 圆角位置
-- (void)qh_cornerWithRaius:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners {
+#pragma mark - animation
+
+/// 弹性振动动画
+/// @param layer 动画层
+/// @param type 动画类型
++ (void)qh_animateShakedWithLayer:(CALayer *)layer type:(GQHAnimationShakedType)type {
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(radius, radius)];
+    CGPoint position = [layer position];
+    CGPoint start = CGPointMake(position.x, position.y);
+    CGPoint end = CGPointMake(position.x, position.y);
     
-    CAShapeLayer *layer = [[CAShapeLayer alloc] init];
-    layer.frame = self.bounds;
-    layer.path = path.CGPath;
-    self.layer.mask = layer;
+    if (type == GQHAnimationShakedTypeHorizontal) {
+        
+        start.x = start.x - 10.0f;
+        end.x = end.x + 10.0f;
+    } else {
+        
+        start.y = start.y - 10.0f;
+        end.y = end.y + 10.0f;
+    }
+    
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+    animation.fromValue = [NSValue valueWithCGPoint:start];
+    animation.toValue = [NSValue valueWithCGPoint:end];
+    animation.autoreverses = YES;
+    animation.duration = 0.08f;
+    animation.repeatCount = 2;
+    [layer addAnimation:animation forKey:nil];
 }
 
-#pragma mark - 视图继承关系
+/// 弹性缩放动画
+/// @param layer 动画层
+/// @param type 动画类型
++ (void)qh_animateScaledWithLayer:(CALayer *)layer type:(GQHAnimationScaledType)type {
+    
+    NSNumber *scaleInOut = (type == GQHAnimationScaledTypeInOut) ? @(1.20f) : @(0.80f);
+    NSNumber *scaleOutIn = (type == GQHAnimationScaledTypeInOut) ? @(0.80f) : @(1.20f);
+    
+    [UIView animateWithDuration:0.15f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+        
+        [layer setValue:scaleInOut forKeyPath:@"transform.scale"];
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.15f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+            
+            [layer setValue:scaleOutIn forKeyPath:@"transform.scale"];
+        } completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:0.1f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+                
+                [layer setValue:@(1.0f) forKeyPath:@"transform.scale"];
+            } completion:nil];
+        }];
+    }];
+}
+
+#pragma mark - inheritance
 
 /// 移除所有子视图
 - (void)qh_removeAllSubviews {
@@ -526,11 +563,7 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return nil;
 }
 
-@end
-
-
-#pragma mark - 视图控制器
-@implementation UIView (GQHController)
+#pragma mark - inheritance
 
 /// 视图的视图控制器
 - (UIViewController *)qh_currentViewController {
@@ -554,6 +587,73 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
 - (UINavigationController *)qh_navigationController {
     
     return [self qh_currentViewController].navigationController;
+}
+
+#pragma mark - badge
+
+
+#pragma mark - other
+
+/// 绘制虚线, 建议在layout后调用
+/// @param dashLines 虚线所有的拐点
+/// @param width 虚线的宽度
+/// @param color 虚线的颜色
+/// @param lengths 虚线的样式
+- (void)qh_dashLines:(NSArray<NSValue *> *)dashLines width:(CGFloat)width color:(UIColor *)color lengths:(NSArray<NSNumber *> *)lengths {
+    
+    CAShapeLayer *dashLineShapeLayer = [CAShapeLayer layer];
+    
+    // 虚线填充色
+    [dashLineShapeLayer setFillColor:[UIColor clearColor].CGColor];
+    // 虚线颜色
+    [dashLineShapeLayer setStrokeColor:color.CGColor];
+    // 虚线线宽
+    [dashLineShapeLayer setLineWidth:width];
+    // 虚线顶端样式
+    [dashLineShapeLayer setLineCap:kCALineCapRound];
+    // 虚线相交模式
+    [dashLineShapeLayer setLineJoin:kCALineJoinRound];
+    
+    // 虚线样式
+    [dashLineShapeLayer setLineDashPattern:lengths];
+    
+    // 虚线绘制路径
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    // 虚线所有拐点
+    [dashLines enumerateObjectsUsingBlock:^(NSValue * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (0 == idx) {
+            
+            CGPoint point = [obj CGPointValue];
+            // 虚线起点
+            CGPathMoveToPoint(path, NULL, point.x, point.y);
+        } else {
+            
+            CGPoint point = [obj CGPointValue];
+            // 虚线折点
+            CGPathAddLineToPoint(path, NULL, point.x, point.y);
+        }
+    }];
+    
+    [dashLineShapeLayer setPath:path];
+    CGPathRelease(path);
+    
+    // 添加虚线
+    [self.layer addSublayer:dashLineShapeLayer];
+}
+
+/// 视图切圆角
+/// @param radius 圆角半径
+/// @param corners 圆角位置
+- (void)qh_cornerWithRaius:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners {
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(radius, radius)];
+    
+    CAShapeLayer *layer = [[CAShapeLayer alloc] init];
+    layer.frame = self.bounds;
+    layer.path = path.CGPath;
+    self.layer.mask = layer;
 }
 
 @end

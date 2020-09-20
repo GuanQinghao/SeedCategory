@@ -1,16 +1,14 @@
 //
-//  UITextView+GQHPlaceholder.m
-//  Seed
+//  UITextView+Category.m
+//  Expecta
 //
-//  Created by Mac on 2018/11/28.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
-#import "UITextView+GQHPlaceholder.h"
+#import "UITextView+Category.h"
 #import <objc/message.h>
 
-
-@implementation UITextView (GQHPlaceholder)
+@implementation UITextView (Category)
 
 /// 占位文字
 /// @param qh_placeholder 占位文字

@@ -1,119 +1,17 @@
 //
-//  UIImage+GQHImage.m
-//  Seed
+//  UIImage+Category.m
+//  Expecta
 //
-//  Created by GuanQinghao on 21/03/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
-#import "UIImage+GQHImage.h"
+#import "UIImage+Category.h"
 #import <AVFoundation/AVFoundation.h>
 #import <ImageIO/ImageIO.h>
 
+@implementation UIImage (Category)
 
-@implementation UIImage (GQHImage)
-
-/// 将彩色图片转换成灰度图片
-- (UIImage *)qh_imageWithGrayscale {
-    
-    CGFloat width = self.size.width;
-    CGFloat height = self.size.height;
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-    CGContextRef context = CGBitmapContextCreate(nil, width, height, 8, 0, colorSpace, kCGImageAlphaNone);
-    CGColorSpaceRelease(colorSpace);
-    
-    if (!context){
-        
-        return nil;
-    }
-    
-    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), self.CGImage);
-    CGImageRef imageRef = CGBitmapContextCreateImage(context);
-    UIImage *image = [UIImage imageWithCGImage:imageRef];
-    CGContextRelease(context);
-    CGImageRelease(imageRef);
-    
-    return image;
-}
-
-/// 旋转图片
-/// @param degrees 旋转角度
-- (UIImage *)qh_imageRotatedWithDegrees:(CGFloat)degrees {
-    
-    CGFloat width = CGImageGetWidth(self.CGImage);
-    CGFloat height = CGImageGetHeight(self.CGImage);
-    CGSize rotatedSize = CGSizeMake(width, height);
-    
-    UIGraphicsBeginImageContext(rotatedSize);
-    CGContextRef bitmap = UIGraphicsGetCurrentContext();
-    
-    CGContextTranslateCTM(bitmap, 0.5f * rotatedSize.width, 0.5f * rotatedSize.height);
-    CGContextRotateCTM(bitmap, degrees * M_PI / 180.0f);
-    CGContextRotateCTM(bitmap, M_PI);
-    CGContextScaleCTM(bitmap, -1.0f, 1.0f);
-    CGContextDrawImage(bitmap, CGRectMake(-0.5f * rotatedSize.width, -0.5f * rotatedSize.height, rotatedSize.width, rotatedSize.height), self.CGImage);
-    
-    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
-
-/// 翻转图片
-/// @param direction 翻转方向(水平翻转或垂向翻转)
-- (UIImage *)qh_imageFlipedWithDirection:(GQHFlipDirection)direction {
-    
-    CGRect rect = CGRectMake(0.0f, 0.0f, CGImageGetWidth(self.CGImage), CGImageGetHeight(self.CGImage));
-    CGAffineTransform transform = CGAffineTransformIdentity;
-    
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    switch (direction) {
-            
-        case GQHFlipDirectionVertical: {
-            
-            transform = CGAffineTransformMakeTranslation(0.0f, CGRectGetHeight(rect));
-            transform = CGAffineTransformScale(transform, 1.0f, -1.0f);
-            
-            CGContextScaleCTM(context, 1.0f, -1.0f);
-            CGContextTranslateCTM(context, 0.0f, -CGRectGetHeight(rect));
-        }
-            break;
-        case GQHFlipDirectionHorizontal: {
-            
-            transform = CGAffineTransformMakeTranslation(CGRectGetWidth(rect), 0.0f);
-            transform = CGAffineTransformScale(transform, -1.0f, 1.0f);
-            
-            CGContextScaleCTM(context, 1.0f, -1.0f);
-            CGContextTranslateCTM(context, 0.0f, -CGRectGetHeight(rect));
-        }
-            break;
-    }
-    
-    CGContextConcatCTM(context, transform);
-    CGContextDrawImage(UIGraphicsGetCurrentContext(), rect, self.CGImage);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
-
-/// 缩放图片到指定尺寸
-/// @param size 指定尺寸
-- (UIImage *)qh_imageRescaledWithSize:(CGSize)size {
-    
-    CGRect rect = (CGRect){CGPointZero,size};
-    UIGraphicsBeginImageContext(rect.size);
-    [self drawInRect:rect];
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
+#pragma mark - class method
 
 /// 获取纯色图片
 /// @param color 颜色
@@ -127,7 +25,7 @@
 /// @param size 指定大小
 + (UIImage *)qh_imageWithColor:(UIColor *)color size:(CGSize)size {
     
-    if (!color || size.width <= 0 || size.height <= 0) {
+    if (!color || size.width <= 0.0f || size.height <= 0.0f) {
         
         return nil;
     }
@@ -141,6 +39,15 @@
     UIGraphicsEndImageContext();
     
     return image;
+}
+
+/// base64编码转图片
+/// @param encode base64编码
++ (UIImage *)qh_imageWithBase64:(NSString *)encode {
+    
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:encode options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    return [UIImage imageWithData:data];
 }
 
 /// 截图/截屏
@@ -163,9 +70,9 @@
 + (UIImage *)qh_imageWithBorderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor image:(UIImage *)image {
     
     CGSize size = CGSizeMake(image.size.width + 2 * borderWidth, image.size.height + 2 * borderWidth);
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0.0f, 0.0f, size.width, size.height)];
     [borderColor set];
     [path fill];
     
@@ -173,10 +80,10 @@
     [path addClip];
     
     [image drawInRect:CGRectMake(borderWidth, borderWidth, image.size.width, image.size.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    return newImage;
+    return result;
 }
 
 /// 压缩图片到指定大小(质量和尺寸)
@@ -311,23 +218,6 @@
     return result;
 }
 
-/// base64编码转图片
-/// @param encode base64编码
-+ (UIImage *)qh_imageWithBase64:(NSString *)encode {
-    
-    NSData *data = [[NSData alloc] initWithBase64EncodedString:encode options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    
-    return [UIImage imageWithData:data];
-}
-
-/// 图片转base64编码
-- (NSString *)qh_base64 {
-    
-    NSData *data = UIImageJPEGRepresentation(self, 1.0f);
-    
-    return [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-}
-
 /// 视频某个时刻的屏幕快照
 /// @param URLString 网络视频地址
 /// @param interval 时刻(秒)
@@ -351,11 +241,6 @@
     
     return screenshot;
 }
-
-@end
-
-
-@implementation UIImage (GQHGIF)
 
 /// 生成GIF图片
 /// @param data gif数据
@@ -435,10 +320,118 @@
     return duration;
 }
 
-@end
 
+#pragma mark - instance method
 
-@implementation UIImage (GQHWatermark)
+/// 图片转base64编码
+- (NSString *)qh_base64 {
+    
+    NSData *data = UIImageJPEGRepresentation(self, 1.0f);
+    
+    return [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
+/// 将彩色图片转换成灰度图片
+- (UIImage *)qh_imageWithGrayscale {
+    
+    CGFloat width = self.size.width;
+    CGFloat height = self.size.height;
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+    CGContextRef context = CGBitmapContextCreate(nil, width, height, 8, 0, colorSpace, kCGImageAlphaNone);
+    CGColorSpaceRelease(colorSpace);
+    
+    if (!context){
+        
+        return nil;
+    }
+    
+    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, width, height), self.CGImage);
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+    UIImage *image = [UIImage imageWithCGImage:imageRef];
+    CGContextRelease(context);
+    CGImageRelease(imageRef);
+    
+    return image;
+}
+
+/// 旋转图片
+/// @param degrees 旋转角度
+- (UIImage *)qh_imageRotatedWithDegrees:(CGFloat)degrees {
+    
+    CGFloat width = CGImageGetWidth(self.CGImage);
+    CGFloat height = CGImageGetHeight(self.CGImage);
+    CGSize rotatedSize = CGSizeMake(width, height);
+    
+    UIGraphicsBeginImageContext(rotatedSize);
+    CGContextRef bitmap = UIGraphicsGetCurrentContext();
+    
+    CGContextTranslateCTM(bitmap, 0.5f * rotatedSize.width, 0.5f * rotatedSize.height);
+    CGContextRotateCTM(bitmap, degrees * M_PI / 180.0f);
+    CGContextRotateCTM(bitmap, M_PI);
+    CGContextScaleCTM(bitmap, -1.0f, 1.0f);
+    CGContextDrawImage(bitmap, CGRectMake(-0.5f * rotatedSize.width, -0.5f * rotatedSize.height, rotatedSize.width, rotatedSize.height), self.CGImage);
+    
+    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+/// 翻转图片
+/// @param direction 翻转方向
+- (UIImage *)qh_imageFlipedWithDirection:(GQHFlipDirection)direction {
+    
+    CGRect rect = CGRectMake(0.0f, 0.0f, CGImageGetWidth(self.CGImage), CGImageGetHeight(self.CGImage));
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    switch (direction) {
+            
+        case GQHFlipDirectionVertical: {
+            
+            transform = CGAffineTransformMakeTranslation(0.0f, CGRectGetHeight(rect));
+            transform = CGAffineTransformScale(transform, 1.0f, -1.0f);
+            
+            CGContextScaleCTM(context, 1.0f, -1.0f);
+            CGContextTranslateCTM(context, 0.0f, -CGRectGetHeight(rect));
+        }
+            break;
+        case GQHFlipDirectionHorizontal: {
+            
+            transform = CGAffineTransformMakeTranslation(CGRectGetWidth(rect), 0.0f);
+            transform = CGAffineTransformScale(transform, -1.0f, 1.0f);
+            
+            CGContextScaleCTM(context, 1.0f, -1.0f);
+            CGContextTranslateCTM(context, 0.0f, -CGRectGetHeight(rect));
+        }
+            break;
+    }
+    
+    CGContextConcatCTM(context, transform);
+    CGContextDrawImage(UIGraphicsGetCurrentContext(), rect, self.CGImage);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+/// 缩放图片到指定尺寸
+/// @param size 指定尺寸
+- (UIImage *)qh_imageRescaledWithSize:(CGSize)size {
+    
+    CGRect rect = (CGRect){CGPointZero,size};
+    UIGraphicsBeginImageContext(rect.size);
+    [self drawInRect:rect];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 
 /// 添加图片水印
 /// @param rect 水印的位置

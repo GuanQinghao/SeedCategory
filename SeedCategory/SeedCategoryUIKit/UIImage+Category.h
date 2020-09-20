@@ -1,45 +1,26 @@
 //
-//  UIImage+GQHImage.h
-//  Seed
+//  UIImage+Category.h
+//  Expecta
 //
-//  Created by GuanQinghao on 21/03/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
 #import <UIKit/UIKit.h>
 
-
-/**
- 图片翻转方向
- 
- - GQHFlipDirectionVertical: 垂直翻转
- - GQHFlipDirectionHorizontal: 水平翻转
- */
-typedef NS_ENUM(NSUInteger,GQHFlipDirection) {
+/// 翻转方向
+typedef NS_ENUM(NSUInteger, GQHFlipDirection) {
     
+    /// 垂向翻转
     GQHFlipDirectionVertical,
-    GQHFlipDirectionHorizontal
+    /// 水平翻转
+    GQHFlipDirectionHorizontal,
 };
-
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIImage (GQHImage)
+@interface UIImage (Category)
 
-/// 将彩色图片转换成灰度图片
-- (nullable UIImage *)qh_imageWithGrayscale;
-
-/// 旋转图片
-/// @param degrees 旋转角度
-- (UIImage *)qh_imageRotatedWithDegrees:(CGFloat)degrees;
-
-/// 翻转图片
-/// @param direction 翻转方向(水平翻转或垂向翻转)
-- (UIImage *)qh_imageFlipedWithDirection:(GQHFlipDirection)direction;
-
-/// 缩放图片到指定尺寸
-/// @param size 指定尺寸
-- (nullable UIImage *)qh_imageRescaledWithSize:(CGSize)size;
+#pragma mark - class method
 
 /// 获取纯色图片
 /// @param color 颜色
@@ -49,6 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param color 颜色
 /// @param size 指定大小
 + (nullable UIImage *)qh_imageWithColor:(UIColor *)color size:(CGSize)size;
+
+/// base64编码转图片
+/// @param encode base64编码
++ (nullable UIImage *)qh_imageWithBase64:(NSString *)encode;
 
 /// 截图/截屏
 /// @param view 源视图
@@ -75,39 +60,35 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param size 二维码图片大小
 + (UIImage *)qh_QRCodeImageWithString:(NSString *)string size:(CGFloat)size;
 
-/// base64编码转图片
-/// @param encode base64编码
-+ (nullable UIImage *)qh_imageWithBase64:(NSString *)encode;
-
-/// 图片转base64编码
-- (NSString *)qh_base64;
-
 /// 视频某个时刻的屏幕快照
 /// @param URLString 网络视频地址
 /// @param interval 时刻(秒)
 + (nullable UIImage *)qh_screenshotForVideo:(NSString *)URLString at:(NSTimeInterval)interval;
 
-@end
-
-NS_ASSUME_NONNULL_END
-
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface UIImage (GQHGIF)
-
 /// 生成GIF图片
 /// @param data gif数据
 + (nullable UIImage *)qh_animateGIFWithData:(NSData *)data;
 
-@end
 
-NS_ASSUME_NONNULL_END
+#pragma mark - instance method
 
+/// 图片转base64编码
+- (NSString *)qh_base64;
 
-NS_ASSUME_NONNULL_BEGIN
+/// 将彩色图片转换成灰度图片
+- (nullable UIImage *)qh_imageWithGrayscale;
 
-@interface UIImage (GQHWatermark)
+/// 旋转图片
+/// @param degrees 旋转角度
+- (UIImage *)qh_imageRotatedWithDegrees:(CGFloat)degrees;
+
+/// 翻转图片
+/// @param direction 翻转方向
+- (UIImage *)qh_imageFlipedWithDirection:(GQHFlipDirection)direction;
+
+/// 缩放图片到指定尺寸
+/// @param size 指定尺寸
+- (nullable UIImage *)qh_imageRescaledWithSize:(CGSize)size;
 
 /// 添加图片水印
 /// @param rect 水印的位置

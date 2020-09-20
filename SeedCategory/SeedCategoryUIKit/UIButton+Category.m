@@ -1,19 +1,17 @@
 //
-//  UIButton+GQHButton.m
-//  Seed
+//  UIButton+Category.m
+//  Expecta
 //
-//  Created by Mac on 2018/7/5.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
-#import "UIButton+GQHButton.h"
+#import "UIButton+Category.h"
 #import <objc/message.h>
-
 
 /// 默认响应点击事件
 static BOOL canResponse = YES;
 
-@implementation UIButton (GQHButton)
+@implementation UIButton (Category)
 
 /// 设置按钮图文排版样式
 /// @param qh_buttonGraphicLayoutStyle 按钮图文排版样式
@@ -136,7 +134,6 @@ static BOOL canResponse = YES;
     self.titleEdgeInsets = titleEdgeInsets;
     self.contentEdgeInsets = contentEdgeInsets;
 }
-
 
 #pragma mark - 按钮重复点击解决方案
 

@@ -11,6 +11,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Category)
 
+#pragma mark - class method
+
+
+
+
+
+
 /// 手机号隐藏格式化 (保留前三位后四位)
 /// @param mobile 手机号
 + (nullable NSString *)qh_formatterSecretStringWithMobile:(NSString *)mobile;
@@ -19,13 +26,27 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param cardNumber 身份证/银行卡/信用卡卡号
 + (nullable NSString *)qh_formatterSecretStringWithCardNumber:(NSString *)cardNumber;
 
+/// MD5加密 32位小写16进制
+/// @param string 需要加密的字符串
++ (nullable NSString *)qh_encryptWithMD5:(NSString *)string;
+
 /// 数量转中文单位
 /// @param value 数量值
 + (NSString *)qh_formatterChineseAmountStringWithValue:(CGFloat)value;
 
-/// MD5加密 32位小写16进制
-/// @param string 需要加密的字符串
-+ (nullable NSString *)qh_encryptWithMD5:(NSString *)string;
+
+#pragma mark - instance method
+
+
+
+
+
+
+
+
+
+
+
 
 /// 计算文本的大小
 /// @param font 文本字体

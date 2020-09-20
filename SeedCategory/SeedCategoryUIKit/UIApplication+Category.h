@@ -1,17 +1,51 @@
 //
-//  UIApplication+GQHApplication.h
-//  Seed
+//  UIApplication+Category.h
+//  Expecta
 //
-//  Created by GuanQinghao on 21/03/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
 #import <UIKit/UIKit.h>
 
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIApplication (GQHApplication)
+@interface UIApplication (Category)
+
+/// documents位置
+@property (nonatomic, readonly, strong) NSURL *qh_documentsURL;
+
+/// documents位置
+- (NSURL *)qh_documentsURL;
+
+/// documents路径
+@property (nonatomic, readonly, copy) NSString *qh_documentsPath;
+
+/// documents路径
+- (NSString *)qh_documentsPath;
+
+/// caches位置
+@property (nonatomic, readonly, strong) NSURL *qh_cachesURL;
+
+/// caches位置
+- (NSURL *)qh_cachesURL;
+
+/// caches路径
+@property (nonatomic, readonly, copy) NSString *qh_cachesPath;
+
+/// caches路径
+- (NSString *)qh_cachesPath;
+
+/// library位置
+@property (nonatomic, readonly, strong) NSURL *qh_libraryURL;
+
+/// library位置
+- (NSURL *)qh_libraryURL;
+
+/// library路径
+@property (nonatomic, readonly, copy) NSString *qh_libraryPath;
+
+/// library路径
+- (NSString *)qh_libraryPath;
 
 /// 应用程序版本号
 @property (nonatomic, readonly, copy) NSString *qh_applicationShortVersion;

@@ -1,23 +1,33 @@
 //
-//  UIView+GQHFrame.h
-//  Seed
+//  UIView+Category.h
+//  Expecta
 //
-//  Created by GuanQinghao on 12/01/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, GQHAnimationShakedType) {
+    
+    /// 上下振动
+    GQHAnimationShakedTypeVertical,
+    /// 左右振动
+    GQHAnimationShakedTypeHorizontal
+};
 
-/// 全局常量-视图单倍外边距
-UIKIT_EXTERN CGFloat const GQHFrameSingleMargin;
-/// 全局常量-视图双倍外边距
-UIKIT_EXTERN CGFloat const GQHFrameDoubleMargin;
-
+typedef NS_ENUM(NSUInteger, GQHAnimationScaledType) {
+    
+    /// 先放大后缩小弹性变化
+    GQHAnimationScaledTypeInOut,
+    /// 先缩小后放大弹性缩放
+    GQHAnimationScaledTypeOutIn
+};
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (GQHFrame)
+@interface UIView (Category)
+
+#pragma mark - frame
 
 /// 视图位置坐标x值
 @property (nonatomic, assign) CGFloat qh_x;
@@ -92,12 +102,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// 底部操作区高度
 @property (nonatomic, assign, readonly) CGFloat qh_homeIndicatorHeight;
 
-/// 视图切圆角
-/// @param radius 圆角半径
-/// @param corners 圆角位置
-- (void)qh_cornerWithRaius:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners;
+#pragma mark - animation
 
-#pragma mark - 视图继承关系
+/// 弹性振动动画
+/// @param layer 动画层
+/// @param type 动画类型
++ (void)qh_animateShakedWithLayer:(CALayer *)layer type:(GQHAnimationShakedType)type;
+
+/// 弹性缩放动画
+/// @param layer 动画层
+/// @param type 动画类型
++ (void)qh_animateScaledWithLayer:(CALayer *)layer type:(GQHAnimationScaledType)type;
+
+#pragma mark - inheritance
 
 /// 移除所有子视图
 - (void)qh_removeAllSubviews;
@@ -114,22 +131,30 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param classType 父视图类型
 - (nullable UIView *)qh_superviewOfClassType:(Class)classType;
 
-@end
-
-NS_ASSUME_NONNULL_END
-
-
-NS_ASSUME_NONNULL_BEGIN
-
-#pragma mark - 视图控制器
-
-@interface UIView (GQHController)
+#pragma mark - controller
 
 /// 视图的视图控制器
 - (nullable UIViewController *)qh_currentViewController;
 
 /// 视图导航控制器
 - (nullable UINavigationController *)qh_navigationController;
+
+#pragma mark - badge
+
+
+#pragma mark - other
+
+/// 绘制虚线, 建议在layout后调用
+/// @param dashLines 虚线所有的拐点
+/// @param width 虚线的宽度
+/// @param color 虚线的颜色
+/// @param lengths 虚线的样式
+- (void)qh_dashLines:(NSArray<NSValue *> *)dashLines width:(CGFloat)width color:(UIColor *)color lengths:(NSArray<NSNumber *> *)lengths;
+
+/// 视图切圆角
+/// @param radius 圆角半径
+/// @param corners 圆角位置
+- (void)qh_cornerWithRaius:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners;
 
 @end
 

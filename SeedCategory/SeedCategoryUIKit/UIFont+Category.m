@@ -1,16 +1,14 @@
 //
-//  UIFont+GQHFont.m
-//  Seed
+//  UIFont+Category.m
+//  Expecta
 //
-//  Created by GuanQinghao on 21/03/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
-#import "UIFont+GQHFont.h"
+#import "UIFont+Category.h"
 #import <objc/message.h>
 
-
-@implementation UIFont (GQHFont)
+@implementation UIFont (Category)
 
 + (void)load {
     

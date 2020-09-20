@@ -1,15 +1,13 @@
 //
-//  UIResponder+GQHRouter.m
-//  Seed
+//  UIResponder+Category.m
+//  Expecta
 //
-//  Created by Mac on 2019/3/21.
-//  Copyright © 2019 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
-#import "UIResponder+GQHRouter.h"
+#import "UIResponder+Category.h"
 
-
-@implementation UIResponder (GQHRouter)
+@implementation UIResponder (Category)
 
 /// 路由响应链
 /// @param identifier 响应标识
@@ -23,4 +21,3 @@
 }
 
 @end
-

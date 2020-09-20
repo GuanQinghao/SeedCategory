@@ -1,19 +1,13 @@
 //
-//  UIColor+GQHColor.m
-//  Seed
+//  UIColor+Category.m
+//  Expecta
 //
-//  Created by GuanQinghao on 21/03/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2020/9/20.
 //
 
-#import "UIColor+GQHColor.h"
+#import "UIColor+Category.h"
 
-
-@implementation UIColor (GQHColor)
-
-#pragma mark - Constant
-
-#pragma mark - Converter
+@implementation UIColor (Category)
 
 /// RGB颜色
 /// @param red 红色R (0~255)
