@@ -1,19 +1,18 @@
 //
-//  NSArray+GQHSafety.m
-//  Seed
+//  NSArray+SeedCategory.m
+//  SeedCategory
 //
-//  Created by GuanQinghao on 24/01/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by Hao on 2020/10/24.
 //
 
-#import "NSArray+GQHSafety.h"
+#import "NSArray+SeedCategory.h"
 
 
-@implementation NSArray (GQHSafety)
+@implementation NSArray (SeedCategory)
 
 /// 安全初始化任意对象为数组
 /// @param object 任意对象
-+ (instancetype)qh_safetyArrayWithObject:(id)object {
++ (instancetype)s_arrayWithObject:(id)object {
     
     if (object) {
         
@@ -26,7 +25,7 @@
 
 /// 获取任意索引的数组对象
 /// @param index 任意索引值
-- (id)qh_safetyObjectAtIndex:(NSUInteger)index {
+- (id)s_objectAtIndex:(NSUInteger)index {
     
     if (index < self.count) {
         
@@ -40,7 +39,7 @@
 
 /// 安全获取任意索引范围的子数组
 /// @param range 索引范围
-- (NSArray *)qh_safetySubarrayWithRange:(NSRange)range {
+- (NSArray *)s_subarrayWithRange:(NSRange)range {
     
     NSUInteger location = range.location;
     NSUInteger length = range.length;
@@ -54,7 +53,7 @@
         
         if (length > 0) {
             
-            return [self qh_safetySubarrayWithRange:NSMakeRange(location, length)];
+            return [self s_subarrayWithRange:NSMakeRange(location, length)];
         } else {
             
             return [NSArray array];
@@ -64,7 +63,7 @@
 
 /// 获取任意对象的数组索引值
 /// @param anObject 任意对象
-- (NSUInteger)qh_safetyIndexOfObject:(id)anObject {
+- (NSUInteger)s_indexOfObject:(id)anObject {
     
     if (anObject) {
         
@@ -77,7 +76,7 @@
 }
 
 /// 是否存在数组或是空数组
-- (BOOL)qh_isEmpty {
+- (BOOL)s_isEmpty {
     
     if (!self) {
         
@@ -100,12 +99,12 @@
 @end
 
 
-@implementation NSMutableArray (GQHSafety)
+@implementation NSMutableArray (SeedCategory)
 
 /// 安全修改(或加入)非空对象
 /// @param object 非空对象
 /// @param index 索引值
-- (void)qh_safetySetObject:(id)object atIndex:(NSUInteger)index {
+- (void)s_setObject:(id)object atIndex:(NSUInteger)index {
     
     if (object && index < self.count) {
         
@@ -122,7 +121,7 @@
 
 /// 添加非空对象
 /// @param object 非空对象
-- (void)qh_safetyAddObject:(id)object {
+- (void)s_addObject:(id)object {
     
     if (object) {
         
@@ -137,7 +136,7 @@
 /// 安全插入非空对象
 /// @param anObject 非空对象
 /// @param index 插入位置的索引值
-- (void)qh_safetyInsertObject:(id)anObject atIndex:(NSUInteger)index {
+- (void)s_insertObject:(id)anObject atIndex:(NSUInteger)index {
     
     if (anObject && index < self.count) {
         
@@ -152,7 +151,7 @@
 /// 安全插入多个非空对象
 /// @param objects 多个非空对象
 /// @param indexes 插入位置的索引值
-- (void)qh_safetyInsertObjects:(NSArray *)objects atIndexes:(NSIndexSet *)indexes {
+- (void)s_insertObjects:(NSArray *)objects atIndexes:(NSIndexSet *)indexes {
     
     if (objects && objects.count == indexes.count && (![indexes indexGreaterThanOrEqualToIndex:(self.count + objects.count)])) {
         
@@ -166,7 +165,7 @@
 
 /// 根据索引安全移除对象
 /// @param index 索引值
-- (void)qh_safetyRemoveObjectAtIndex:(NSUInteger)index {
+- (void)s_removeObjectAtIndex:(NSUInteger)index {
     
     if (index < self.count) {
         
@@ -180,7 +179,7 @@
 
 /// 根据索引范围安全移除多个对象
 /// @param range 索引值范围
-- (void)qh_safetyRemoveObjectsInRange:(NSRange)range {
+- (void)s_removeObjectsInRange:(NSRange)range {
     
     NSUInteger location = range.location;
     NSUInteger length = range.length;
@@ -203,7 +202,7 @@
 }
 
 /// 是否存在数组或是空数组
-- (BOOL)qh_isEmpty {
+- (BOOL)s_isEmpty {
     
     if (!self) {
         

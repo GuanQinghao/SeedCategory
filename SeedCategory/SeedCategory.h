@@ -10,15 +10,11 @@
 
 
 //MARK:FoundationKit
-#import "NSArray+GQHSafety.h"
-#import "NSDate+GQHFormatter.h"
-#import "NSDictionary+GQHJSON.h"
-#import "NSDictionary+GQHSafety.h"
-#import "NSObject+GQHProperty.h"
-#import "NSObject+GQHSwizzling.h"
-#import "NSObject+GQHValidator.h"
-#import "NSString+Category.h"
-
+#import "NSArray+SeedCategory.h"
+#import "NSDate+SeedCategory.h"
+#import "NSDictionary+SeedCategory.h"
+#import "NSObject+SeedCategory.h"
+#import "NSString+SeedCategory.h"
 
 //MARK:UIKit
 #import "CAAnimation+GQHAnimation.h"

@@ -1,20 +1,21 @@
 //
-//  NSString+Category.m
+//  NSString+SeedCategory.m
+//  SeedCategory
 //
-//  Created by GuanQinghao on 08/09/2020.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by Hao on 2020/10/24.
 //
 
-#import "NSString+Category.h"
+#import "NSString+SeedCategory.h"
 #import <CommonCrypto/CommonDigest.h>
 
-@implementation NSString (Category)
+
+@implementation NSString (SeedCategory)
 
 #pragma mark - class method
 
 /// 手机号隐藏格式化 (保留前三位后四位)
 /// @param mobile 手机号
-+ (NSString *)qh_formatterSecretStringWithMobile:(NSString *)mobile {
++ (NSString *)s_formatMobileWith:(NSString *)mobile {
     
     if (mobile) {
         
@@ -37,7 +38,7 @@
 
 /// 身份证/银行卡/信用卡格式化 (保留前四位后四位)
 /// @param cardNumber 身份证/银行卡/信用卡卡号
-+ (NSString *)qh_formatterSecretStringWithCardNumber:(NSString *)cardNumber {
++ (NSString *)s_formatCardNumberWith:(NSString *)cardNumber {
     
     if (cardNumber) {
         
@@ -63,7 +64,7 @@
 
 /// 数量转中文单位
 /// @param value 数量值
-+ (NSString *)qh_formatterChineseAmountStringWithValue:(CGFloat)value {
++ (NSString *)s_formatChineseAmountWith:(CGFloat)value {
     
     if ((int)(floor(value) / 100000000)) {
         
@@ -79,7 +80,7 @@
 
 /// MD5加密 32位小写16进制
 /// @param string 需要加密的字符串
-+ (NSString *)qh_encryptWithMD5:(NSString *)string {
++ (NSString *)s_encryptWithMD5:(NSString *)string {
     
     if (!string) {
         
@@ -110,17 +111,10 @@
     return cipherString;
 }
 
-
-
-
-
-
-#pragma mark - instance method
-
 /// 计算文本的大小
 /// @param font 文本字体
 /// @param maxSize 最大size
-- (CGSize)qh_formatterSizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize {
+- (CGSize)s_formatSizeWith:(UIFont *)font maxSize:(CGSize)maxSize {
     
     NSDictionary *attributeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
     NSStringDrawingOptions options = NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin;
@@ -133,14 +127,14 @@
 
 /// 是否大于某一版本
 /// @param version 某一版本
-- (BOOL)qh_newerThan:(NSString *)version {
+- (BOOL)s_newerThan:(NSString *)version {
     
     return [self compare:version] == NSOrderedDescending;
 }
 
 /// 是否大于或等于某一版本
 /// @param version 某一版本
-- (BOOL)qh_newerThanOrEqualTo:(NSString *)version {
+- (BOOL)s_newerThanOrEqualTo:(NSString *)version {
     
     NSComparisonResult result = [self compare:version];
     
@@ -149,14 +143,14 @@
 
 /// 是否小于某一版本
 /// @param version 某一版本
-- (BOOL)qh_olderThan:(NSString *)version {
+- (BOOL)s_olderThan:(NSString *)version {
     
     return [self compare:version] == NSOrderedAscending;
 }
 
 /// 是否小于或等于某一版本
 /// @param version 某一版本
-- (BOOL)qh_olderThanOrEqualTo:(NSString *)version {
+- (BOOL)s_olderThanOrEqualTo:(NSString *)version {
     
     NSComparisonResult result = [self compare:version];
     
@@ -196,7 +190,7 @@
 
 /// 安全截取字符串
 /// @param from 截取起始位置
-- (NSString *)qh_safetySubstringFromIndex:(NSUInteger)from {
+- (NSString *)s_substringFromIndex:(NSUInteger)from {
     
     if (from < self.length) {
         
@@ -210,7 +204,7 @@
 
 /// 安全截取字符串
 /// @param to 截取结束位置
-- (NSString *)qh_safetySubstringToIndex:(NSUInteger)to {
+- (NSString *)s_substringToIndex:(NSUInteger)to {
     
     if (to < self.length) {
         
@@ -224,7 +218,7 @@
 
 /// 安全截取字符串
 /// @param range 截取range范围
-- (NSString *)qh_safetySubstringWithRange:(NSRange)range {
+- (NSString *)s_substringWithRange:(NSRange)range {
     
     NSUInteger location = range.location;
     NSUInteger length = range.length;
@@ -249,12 +243,12 @@
 @end
 
 
-@implementation NSMutableString (Category)
+@implementation NSMutableString (SeedCategory)
 
 /// 指定位置安全插入字符串
 /// @param aString 要插入的字符串
 /// @param location 指定位置
-- (void)qh_safetyInsertString:(NSString *)aString atIndex:(NSUInteger)location {
+- (void)s_insertString:(NSString *)aString atIndex:(NSUInteger)location {
     
     if (aString && location < self.length) {
         
@@ -268,7 +262,7 @@
 
 /// 字符串后安全拼接字符串
 /// @param aString 要拼接的字符串
-- (void)qh_safetyAppendString:(NSString *)aString {
+- (void)s_appendString:(NSString *)aString {
     
     if (aString) {
         
@@ -282,7 +276,7 @@
 
 /// 安全修改可变字符串的字符内容
 /// @param aString 要修改的字符串
-- (void)qh_safetySetString:(NSString *)aString {
+- (void)s_setString:(NSString *)aString {
     
     if (aString) {
         
@@ -296,7 +290,7 @@
 
 /// 安全删除区间内的字符
 /// @param range 要删除的字符串range范围
-- (void)qh_safetyDeleteCharactersInRange:(NSRange)range {
+- (void)s_deleteCharactersInRange:(NSRange)range {
     
     NSUInteger location = range.location;
     NSUInteger length = range.length;
@@ -321,13 +315,13 @@
 @end
 
 
-@implementation NSMutableAttributedString (Category)
+@implementation NSMutableAttributedString (SeedCategory)
 
 /// 属性字符串修改指定字符串属性
 /// @param string 指定的字符串
 /// @param font 新属性字体
 /// @param color 新属性字体颜色
-- (NSMutableAttributedString *)qh_attributedStringBy:(NSString *)string withFont:(UIFont *)font color:(UIColor *)color {
+- (NSMutableAttributedString *)s_attributedStringBy:(NSString *)string withFont:(UIFont *)font color:(UIColor *)color {
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:self];
     NSRange range = [self.string rangeOfString:string];
@@ -341,7 +335,7 @@
 /// @param string 字符串
 /// @param head 头部缩进
 /// @param tail 尾部缩进(>0)
-+ (NSMutableAttributedString *)qh_attributedStringWith:(NSString *)string headIndent:(CGFloat)head tailIndent:(CGFloat)tail {
++ (NSMutableAttributedString *)s_attributedStringWith:(NSString *)string headIndent:(CGFloat)head tailIndent:(CGFloat)tail {
     
     NSMutableParagraphStyle *style = [NSParagraphStyle defaultParagraphStyle].mutableCopy;
     // 对齐方式
