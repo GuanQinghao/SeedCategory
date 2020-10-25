@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SeedCategory'
-    s.version          = '0.0.11'
+    s.version          = '0.1.0'
     s.summary          = 'Objective-C 常用分类'
     s.homepage         = 'https://github.com/GuanQinghao/SeedCategory'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -25,7 +25,5 @@ Pod::Spec.new do |s|
     s.subspec 'SeedCategoryUIKit' do |ss|
         ss.source_files = 'SeedCategory/SeedCategoryUIKit/**/*'
     end
-    
-    s.dependency 'MBProgressHUD'
     
 end

@@ -510,32 +510,6 @@
 @end
 
 
-
-@implementation NSObject (GQHPrint)
-
-/// Objective-C对象转JSON字符串
-- (NSString *)s_toJSONString {
-    
-    if (![NSJSONSerialization isValidJSONObject:self]) {
-        
-        return nil;
-    }
-    
-    NSError *error = nil;
-    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:&error];
-    if (error || !JSONData) {
-        
-        return nil;
-    }
-    
-    NSString *JSONString = [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
-    
-    return JSONString;
-}
-
-@end
-
-
 #pragma mark --控制台数组和字典打印输出
 /// 交换方法
 static inline void s_swizzleSelector(Class class, SEL originalSelector, SEL alterSelector) {
