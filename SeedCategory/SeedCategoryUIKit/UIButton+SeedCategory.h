@@ -32,9 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 按钮图文间距
 @property (nonatomic, assign) float s_graphicLayoutSpacing;
 
-/// 点击事件时间间隔
-@property (nonatomic, assign) NSTimeInterval s_intervalOnClick;
-
 @end
 
 NS_ASSUME_NONNULL_END
