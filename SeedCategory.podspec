@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SeedCategory'
-    s.version          = '0.1.0'
+    s.version          = '0.1.1'
     s.summary          = 'Objective-C 常用分类'
     s.homepage         = 'https://github.com/GuanQinghao/SeedCategory'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
