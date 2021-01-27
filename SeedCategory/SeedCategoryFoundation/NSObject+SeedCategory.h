@@ -114,7 +114,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 过滤表情符号(emoji)
 /// @param object 任意对象
-+ (nullable NSString *)s_filterEmoji:(id)object;
++ (NSString *)s_filterEmoji:(id)object;
 
 /// 对象内容的null、Null、NSNull转为@""
 /// @param object 任意对象
