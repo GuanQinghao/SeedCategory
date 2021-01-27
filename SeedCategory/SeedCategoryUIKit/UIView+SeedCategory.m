@@ -366,12 +366,12 @@
 
 - (CGFloat)s_safeAreaWidth {
     
-    return CGRectGetWidth(UIApplication.sharedApplication.delegate.window.safeAreaLayoutGuide.layoutFrame);
+    return CGRectGetWidth(UIApplication.sharedApplication.windows.firstObject.safeAreaLayoutGuide.layoutFrame);
 }
 
 - (CGFloat)s_safeAreaHeight {
     
-    return CGRectGetHeight(UIApplication.sharedApplication.delegate.window.safeAreaLayoutGuide.layoutFrame);
+    return CGRectGetHeight(UIApplication.sharedApplication.windows.firstObject.safeAreaLayoutGuide.layoutFrame);
 }
 
 - (CGFloat)s_statusBarHeight {
@@ -397,7 +397,7 @@
 
 - (CGFloat)s_homeIndicatorHeight {
     
-    return UIApplication.sharedApplication.delegate.window.safeAreaInsets.bottom;
+    return UIApplication.sharedApplication.windows.firstObject.safeAreaInsets.bottom;
 }
 
 #pragma mark - inheritance
