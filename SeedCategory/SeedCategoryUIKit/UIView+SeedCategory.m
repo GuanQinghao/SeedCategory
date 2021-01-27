@@ -366,29 +366,19 @@
 
 - (CGFloat)s_safeAreaWidth {
     
-    if (@available(iOS 11.0, *)) {
-        
-        return CGRectGetWidth(UIApplication.sharedApplication.delegate.window.safeAreaLayoutGuide.layoutFrame);
-    }
-    
-    return CGRectGetWidth(UIApplication.sharedApplication.delegate.window.bounds);
+    return CGRectGetWidth(UIApplication.sharedApplication.delegate.window.safeAreaLayoutGuide.layoutFrame);
 }
 
 - (CGFloat)s_safeAreaHeight {
     
-    if (@available(iOS 11.0, *)) {
-        
-        return CGRectGetHeight(UIApplication.sharedApplication.delegate.window.safeAreaLayoutGuide.layoutFrame);
-    }
-    
-    return CGRectGetHeight(UIApplication.sharedApplication.delegate.window.bounds);
+    return CGRectGetHeight(UIApplication.sharedApplication.delegate.window.safeAreaLayoutGuide.layoutFrame);
 }
 
 - (CGFloat)s_statusBarHeight {
     
     if (@available(iOS 13, *)) {
         
-        return CGRectGetHeight(UIApplication.sharedApplication.keyWindow.windowScene.statusBarManager.statusBarFrame);
+        return CGRectGetHeight(UIApplication.sharedApplication.windows.firstObject.windowScene.statusBarManager.statusBarFrame);
     } else {
         
         return CGRectGetHeight(UIApplication.sharedApplication.statusBarFrame);
@@ -407,12 +397,7 @@
 
 - (CGFloat)s_homeIndicatorHeight {
     
-    if (@available(iOS 11.0, *)) {
-        
-        return UIApplication.sharedApplication.delegate.window.safeAreaInsets.bottom;
-    }
-    
-    return 0.0f;
+    return UIApplication.sharedApplication.delegate.window.safeAreaInsets.bottom;
 }
 
 #pragma mark - inheritance

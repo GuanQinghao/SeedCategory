@@ -9,9 +9,6 @@
 #import <objc/message.h>
 
 
-/// 默认响应点击事件
-static BOOL canResponse = YES;
-
 @implementation UIButton (SeedCategory)
 
 /// 设置按钮图文排版样式
