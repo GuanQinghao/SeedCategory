@@ -372,9 +372,64 @@
     return YES;
 }
 
-/// 是否含有表情符号(emoji)
+/// 是否是表情符号(emoji)
 /// @param object 任意对象
-+ (BOOL)s_isStringWithEmoji:(id)object {
++ (BOOL)s_isEmoji:(id)object {
+    
+    if (![object isKindOfClass:[NSString class]]) {
+        
+        return NO;
+    }
+    
+    BOOL result = NO;
+    const unichar first = [object characterAtIndex:0];
+    
+    // 解码代理对 (surrogate pair)
+    if (0xd800 <= first && first <= 0xdbff) {
+        
+        if ([object length] > 1) {
+            
+            const unichar next = [object characterAtIndex:1];
+            const int uc = ((first - 0xd800) * 0x400) + (next - 0xdc00) + 0x10000;
+            if (0x1d000 <= uc && uc <= 0x1f77f) {
+                
+                result = YES;
+            }
+        }
+    } else if ([object length] > 1) {
+        
+        const unichar next = [object characterAtIndex:1];
+        
+        if (next == 0x20e3) {
+            
+            result = YES;
+        }
+    } else {
+        
+        if (0x2100 <= first && first <= 0x27ff) {
+            
+            result = YES;
+        } else if (0x2B05 <= first && first <= 0x2b07) {
+            
+            result = YES;
+        } else if (0x2934 <= first && first <= 0x2935) {
+            
+            result = YES;
+        } else if (0x3297 <= first && first <= 0x3299) {
+            
+            result = YES;
+        } else if (first == 0xa9 || first == 0xae || first == 0x303d || first == 0x3030 || first == 0x2b55 || first == 0x2b1c || first == 0x2b1b || first == 0x2b50) {
+            
+            result = YES;
+        }
+    }
+    
+    return result;
+}
+
+/// 字符串是否含有表情符号(emoji)
+/// @param object 任意对象
++ (BOOL)s_isStringContainsEmoji:(id)object {
     
     if (![object isKindOfClass:[NSString class]]) {
         
@@ -385,46 +440,37 @@
     
     [object enumerateSubstringsInRange:NSMakeRange(0, [object length]) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
         
-        const unichar firstChar = [substring characterAtIndex:0];
+        result = [NSObject s_isEmoji:substring];
         
-        // 解码代理对 (surrogate pair)
-        if (0xd800 <= firstChar && firstChar <= 0xdbff) {
+        if (result) {
             
-            if (substring.length > 1) {
-                
-                const unichar nextChar = [substring characterAtIndex:1];
-                const int uc = ((firstChar - 0xd800) * 0x400) + (nextChar - 0xdc00) + 0x10000;
-                if (0x1d00 <= uc && uc <= 0x1f77f) {
-                    
-                    result = YES;
-                }
-            }
-        } else if (substring.length > 1) {
+            // *stop = YES; => 表示跳出block循环, 但是本次循环需要执行完毕
+            // return; => 表示跳出本次block循环, 继续进行下次循环, 相当于 continue
+            // *stop = YES; return; => 表示跳出block循环，并且不执行本次循环剩余代码, 相当于break
+            *stop = YES;
+            return;
+        }
+    }];
+    
+    return result;
+}
+
+/// 过滤表情符号(emoji)
+/// @param object 任意对象
++ (NSString *)s_filterEmoji:(id)object {
+    
+    if (![object isKindOfClass:[NSString class]]) {
+        
+        return @"";
+    }
+    
+    __block NSString *result = @"";
+    [object enumerateSubstringsInRange:NSMakeRange(0, [object length]) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        
+        if (substring) {
             
-            const unichar nextChar = [substring characterAtIndex:1];
-            
-            if (nextChar == 0x20e3) {
-                
-                result = YES;
-            }
-        } else {
-            
-            if (0x2100 <= firstChar && firstChar <= 0x27ff) {
-                
-                result = YES;
-            } else if (0x2B05 <= firstChar && firstChar <= 0x2b07) {
-                
-                result = YES;
-            } else if (0x2934 <= firstChar && firstChar <= 0x2935) {
-                
-                result = YES;
-            } else if (0x3297 <= firstChar && firstChar <= 0x3299) {
-                
-                result = YES;
-            } else if (firstChar == 0xa9 || firstChar == 0xae || firstChar == 0x303d || firstChar == 0x3030 || firstChar == 0x2b55 || firstChar == 0x2b1c || firstChar == 0x2b1b || firstChar == 0x2b50) {
-                
-                result = YES;
-            }
+            NSString *buffer = [NSObject s_isEmoji:substring] ? @"" : substring;
+            result = [result stringByAppendingString: buffer];
         }
     }];
     

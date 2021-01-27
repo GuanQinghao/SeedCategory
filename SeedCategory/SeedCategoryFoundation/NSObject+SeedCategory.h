@@ -104,9 +104,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param object 任意对象
 + (BOOL)s_isValidArray:(id)object;
 
-/// 是否含有表情符号(emoji)
+/// 是否是表情符号(emoji)
 /// @param object 任意对象
-+ (BOOL)s_isStringWithEmoji:(id)object;
++ (BOOL)s_isEmoji:(id)object;
+
+/// 字符串是否含有表情符号(emoji)
+/// @param object 任意对象
++ (BOOL)s_isStringContainsEmoji:(id)object;
+
+/// 过滤表情符号(emoji)
+/// @param object 任意对象
++ (nullable NSString *)s_filterEmoji:(id)object;
 
 /// 对象内容的null、Null、NSNull转为@""
 /// @param object 任意对象
@@ -118,7 +126,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)s_delay:(double)seconds executing:(nullable void (^)(void))handler;
 
 /// Objective-C对象转JSON字符串
-- (nullable NSString *)s_toJSONString;
+- (NSString *)s_toJSONString;
 
 @end
 
