@@ -413,7 +413,7 @@
 
 /// 查询子视图(子视图的子视图)
 /// @param className 子视图类名字符串
-- (NSArray<__kindof UIView *> *)s_subviewsOfClassName:(NSString *)className {
+- (NSArray<__kindof UIView *> *)s_subviewsWithClassName:(NSString *)className {
     
     NSMutableArray *subviewArray = [NSMutableArray array];
     
@@ -425,7 +425,7 @@
         }
         
         // 子视图的子视图
-        [subviewArray addObjectsFromArray:[subview s_subviewsOfClassName:className]];
+        [subviewArray addObjectsFromArray:[subview s_subviewsWithClassName:className]];
     }
     
     return [subviewArray copy];
@@ -433,7 +433,7 @@
 
 /// 查询子视图(子视图的子视图)
 /// @param classType 子视图类型
-- (NSArray<__kindof UIView *> *)s_subviewsOfClassType:(Class)classType {
+- (NSArray<__kindof UIView *> *)s_subviewsWithClassType:(Class)classType {
     
     NSMutableArray *subviewArray = [NSMutableArray array];
     
@@ -456,7 +456,7 @@
         }
         
         // 子视图的子视图
-        [subviewArray addObjectsFromArray:[subview s_subviewsOfClassType:classType]];
+        [subviewArray addObjectsFromArray:[subview s_subviewsWithClassType:classType]];
     }
     
     return [subviewArray copy];

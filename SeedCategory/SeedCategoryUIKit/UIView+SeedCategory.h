@@ -112,11 +112,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 查询子视图(子视图的子视图)
 /// @param className 子视图类名字符串
-- (NSArray<__kindof UIView *> *)s_subviewsOfClassName:(NSString *)className;
+- (NSArray<__kindof UIView *> *)s_subviewsWithClassName:(NSString *)className;
 
 /// 查询子视图(子视图的子视图)
 /// @param classType 子视图类型
-- (NSArray<__kindof UIView *> *)s_subviewsOfClassType:(Class)classType;
+- (NSArray<__kindof UIView *> *)s_subviewsWithClassType:(Class)classType;
 
 /// 查询父视图
 /// @param classType 父视图类型
