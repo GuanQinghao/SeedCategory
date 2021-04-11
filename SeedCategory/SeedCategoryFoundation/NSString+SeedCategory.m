@@ -129,14 +129,14 @@
 /// @param version 某一版本
 - (BOOL)s_newerThan:(NSString *)version {
     
-    return [self compare:version] == NSOrderedDescending;
+    return [self s_compare:version] == NSOrderedDescending;
 }
 
 /// 是否大于或等于某一版本
 /// @param version 某一版本
 - (BOOL)s_newerThanOrEqualTo:(NSString *)version {
     
-    NSComparisonResult result = [self compare:version];
+    NSComparisonResult result = [self s_compare:version];
     
     return result == NSOrderedDescending || result == NSOrderedSame;
 }
@@ -145,21 +145,21 @@
 /// @param version 某一版本
 - (BOOL)s_olderThan:(NSString *)version {
     
-    return [self compare:version] == NSOrderedAscending;
+    return [self s_compare:version] == NSOrderedAscending;
 }
 
 /// 是否小于或等于某一版本
 /// @param version 某一版本
 - (BOOL)s_olderThanOrEqualTo:(NSString *)version {
     
-    NSComparisonResult result = [self compare:version];
+    NSComparisonResult result = [self s_compare:version];
     
     return result == NSOrderedAscending || result == NSOrderedSame;
 }
 
 /// 版本号比较
 /// @param version 版本号
-- (NSComparisonResult)compare:(NSString *)version {
+- (NSComparisonResult)s_compare:(NSString *)version {
     
     NSArray *leftVersion = [self componentsSeparatedByString:@"."];
     NSArray *rightVersion = [version componentsSeparatedByString:@"."];
