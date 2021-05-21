@@ -60,6 +60,30 @@
     }
 }
 
+/// 获取网络标准时间
++ (NSDate *)s_standardDate {
+    
+    NSString *URLString = @"http://m.baidu.com";
+    URLString = [URLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+    
+    __block NSDate *date = [NSDate date];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
+        NSString *result = [res.allHeaderFields objectForKey:@"Date"];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"eee dd MMM yyyy HH:mm:ss z"];
+        date = [formatter dateFromString:result];
+    }];
+    
+    [dataTask resume];
+    
+    return date;
+}
+
 /// 时间戳(1970 单位秒)格式化为时间差
 /// @param timeStamp 时间戳(1970 单位秒)
 + (NSString *)s_formatTimeDifferenceWith:(NSTimeInterval)timeStamp {

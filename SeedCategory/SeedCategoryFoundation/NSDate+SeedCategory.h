@@ -37,6 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param type 时间格式化样式
 + (NSString *)s_formatTypeStringWith:(SeedDateFormatType)type;
 
+/// 获取网络标准时间
++ (NSDate *)s_standardDate;
+
 /// 时间戳(1970 单位秒)格式化为时间差
 /// @param timeStamp 时间戳(1970 单位秒)
 + (NSString *)s_formatTimeDifferenceWith:(NSTimeInterval)timeStamp;

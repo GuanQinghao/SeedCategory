@@ -264,7 +264,7 @@
     return NO;
 }
 
-/// 纯中文字符
+/// 纯中文字符的字符串
 /// @param object 任意对象
 + (BOOL)s_isOnlyChinese:(id)object {
     
@@ -279,7 +279,7 @@
     return NO;
 }
 
-/// 纯数字
+/// 纯数字的字符串
 /// @param object 任意对象
 + (BOOL)s_isOnlyNumber:(id)object {
     
@@ -294,7 +294,7 @@
     return NO;
 }
 
-/// 浮点数
+/// 浮点数的字符串
 /// @param object 任意对象
 + (BOOL)s_isValidDecimal:(id)object {
     
