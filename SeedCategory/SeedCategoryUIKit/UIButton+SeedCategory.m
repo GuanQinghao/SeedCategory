@@ -6,131 +6,82 @@
 //
 
 #import "UIButton+SeedCategory.h"
-#import <objc/message.h>
 
 
 @implementation UIButton (SeedCategory)
 
-/// 设置按钮图文排版样式
-/// @param s_graphicLayoutStyle 按钮图文排版样式
-- (void)setS_graphicLayoutStyle:(SeedButtonGraphicLayoutStyle)s_graphicLayoutStyle {
+/// 设置按钮的图文样式
+/// @param style 图文样式
+/// @param spacing 图文间距
+/// @param operation 图文设置回调(在回调中设置图片和文字)
+- (void)s_setGraphicStyle:(SeedButtonGraphicLayoutStyle)style spacing:(CGFloat)spacing withOperation:(void (^)(UIButton * _Nonnull))operation {
     
-    NSNumber *style = [NSNumber numberWithUnsignedInteger:s_graphicLayoutStyle];
-    objc_setAssociatedObject(self, @selector(s_graphicLayoutStyle), style, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    // 重布局按钮视图
-    [self relayoutView];
-}
-
-/// 获取按钮图文排版样式
-- (SeedButtonGraphicLayoutStyle)s_graphicLayoutStyle {
-    
-    NSNumber *style = objc_getAssociatedObject(self, _cmd);
-    
-    switch ([style integerValue]) {
-            
-        case 1:
-            return SeedButtonGraphicLayoutStyleVerticalOpposite;
-            break;
-        case 2:
-            return SeedButtonGraphicLayoutStyleHorizontalDefault;
-            break;
-        case 3:
-            return SeedButtonGraphicLayoutStyleHorizontalOpposite;
-            break;
-        default:
-            return SeedButtonGraphicLayoutStyleVerticalDefault;
-            break;
+    if (operation) {
+        
+        operation(self);
     }
-}
-
-/// 设置按钮图文间距
-/// @param s_graphicLayoutSpacing 按钮图文间距
-- (void)setS_graphicLayoutSpacing:(float)s_graphicLayoutSpacing {
     
-    NSNumber *spacing = [NSNumber numberWithFloat:s_graphicLayoutSpacing];
-    objc_setAssociatedObject(self, @selector(s_graphicLayoutSpacing), spacing, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    // 重布局按钮视图
-    [self relayoutView];
-}
-
-/// 获取按钮图文间距
-- (float)s_graphicLayoutSpacing {
-    
-    NSNumber *spacing = objc_getAssociatedObject(self, _cmd);
-    
-    return [spacing floatValue];
-}
-
-/// 重布局按钮视图
-- (void)relayoutView {
-    
-    // 按钮图片宽度
-    CGFloat imageWidth = self.currentImage.size.width;
-    // 按钮图片高度
-    CGFloat imageHeight = self.currentImage.size.height;
-    
-    // 按钮文本大小
-    CGSize textSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
-    // 按钮文本宽度
-    CGFloat labelWidth = textSize.width;
-    // 按钮文本高度
-    CGFloat labelHeight = textSize.height;
-    
-    // image中心移动的x距离
-    CGFloat imageOffsetX = 0.5f * (imageWidth + labelWidth) - 0.5f * imageWidth;
-    // image中心移动的y距离
-    CGFloat imageOffsetY = 0.5f * (imageHeight + self.s_graphicLayoutSpacing);
-    // label中心移动的x距离
-    CGFloat labelOffsetX = (imageWidth + 0.5f * labelWidth) - 0.5f * (imageWidth + labelWidth);
-    // label中心移动的y距离
-    CGFloat labelOffsetY = 0.5f * (labelHeight + self.s_graphicLayoutSpacing);
-    
-    CGFloat tempWidth = MAX(labelWidth, imageWidth);
-    CGFloat changedWidth = labelWidth + imageWidth - tempWidth;
-    CGFloat tempHeight = MAX(labelHeight, imageHeight);
-    CGFloat changedHeight = labelHeight + imageHeight + self.s_graphicLayoutSpacing - tempHeight;
-    
-    UIEdgeInsets imageEdgeInsets = UIEdgeInsetsZero;
-    UIEdgeInsets titleEdgeInsets = UIEdgeInsetsZero;
-    UIEdgeInsets contentEdgeInsets = UIEdgeInsetsZero;
-    
-    switch (self.s_graphicLayoutStyle) {
+    switch (style) {
+        case SeedButtonGraphicLayoutStyleTextRight: {
             
-        case SeedButtonGraphicLayoutStyleVerticalDefault: {
-            
-            imageEdgeInsets = UIEdgeInsetsMake(-imageOffsetY, imageOffsetX, imageOffsetY, -imageOffsetX);
-            titleEdgeInsets = UIEdgeInsetsMake(labelOffsetY, -labelOffsetX, -labelOffsetY, labelOffsetX);
-            contentEdgeInsets = UIEdgeInsetsMake(imageOffsetY, -0.5f * changedWidth, changedHeight - imageOffsetY, -0.5f * changedWidth);
+            if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft) {
+                
+                self.titleEdgeInsets = UIEdgeInsetsMake(0.0f, spacing, 0.0f, 0.0f);
+            } else if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentRight) {
+                
+                self.imageEdgeInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, spacing);
+            } else {
+                
+                self.imageEdgeInsets = UIEdgeInsetsMake(0.0f, -0.5f * spacing, 0.0f, 0.5f * spacing);
+                self.titleEdgeInsets = UIEdgeInsetsMake(0.0f, 0.5 * spacing, 0.0f, -0.5 * spacing);
+            }
         }
             break;
-        case SeedButtonGraphicLayoutStyleVerticalOpposite: {
+        case SeedButtonGraphicLayoutStyleTextLeft: {
             
-            imageEdgeInsets = UIEdgeInsetsMake(imageOffsetY, imageOffsetX, -imageOffsetY, -imageOffsetX);
-            titleEdgeInsets = UIEdgeInsetsMake(-labelOffsetY, -labelOffsetX, labelOffsetY, labelOffsetX);
-            contentEdgeInsets = UIEdgeInsetsMake(changedHeight - imageOffsetY, -0.5f * changedWidth, imageOffsetY, -0.5f * changedWidth);
+            CGFloat imageWidth = self.imageView.image.size.width;
+            CGFloat titleWidth = self.titleLabel.frame.size.width;
+            
+            if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft) {
+                
+                self.imageEdgeInsets = UIEdgeInsetsMake(0.0f, titleWidth + spacing, 0.0f, 0.0f);
+                self.titleEdgeInsets = UIEdgeInsetsMake(0.0f, -imageWidth, 0.0f, 0.0f);
+            } else if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentRight) {
+                
+                self.imageEdgeInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, -titleWidth);
+                self.titleEdgeInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, imageWidth + spacing);
+            } else {
+                
+                CGFloat imageOffset = titleWidth + 0.5f * spacing;
+                CGFloat titleOffset = imageWidth + 0.5f * spacing;
+                self.imageEdgeInsets = UIEdgeInsetsMake(0.0f, imageOffset, 0.0f, -imageOffset);
+                self.titleEdgeInsets = UIEdgeInsetsMake(0.0f, -titleOffset, 0.0f, titleOffset);
+            }
         }
             break;
-        case SeedButtonGraphicLayoutStyleHorizontalDefault: {
+        case SeedButtonGraphicLayoutStyleTextBottom: {
             
-            imageEdgeInsets = UIEdgeInsetsMake(0, -0.5f * self.s_graphicLayoutSpacing, 0, 0.5f * self.s_graphicLayoutSpacing);
-            titleEdgeInsets = UIEdgeInsetsMake(0, 0.5f * self.s_graphicLayoutSpacing, 0, -0.5f * self.s_graphicLayoutSpacing);
-            contentEdgeInsets = UIEdgeInsetsMake(0, 0.5f * self.s_graphicLayoutSpacing, 0, 0.5f * self.s_graphicLayoutSpacing);
+            CGFloat imageWidth = self.imageView.frame.size.width;
+            CGFloat imageHeight = self.imageView.frame.size.height;
+            CGFloat titleIntrinsicContentSizeWidth = self.titleLabel.intrinsicContentSize.width;
+            CGFloat titleIntrinsicContentSizeHeight = self.titleLabel.intrinsicContentSize.height;
+            
+            self.imageEdgeInsets = UIEdgeInsetsMake(-titleIntrinsicContentSizeHeight - spacing, 0.0f, 0.0f, -titleIntrinsicContentSizeWidth);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0.0f, -imageWidth, -imageHeight - spacing, 0.0f);
         }
             break;
-        case SeedButtonGraphicLayoutStyleHorizontalOpposite: {
+        case SeedButtonGraphicLayoutStyleTextTop: {
             
-            imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth + 0.5f * self.s_graphicLayoutSpacing, 0, -labelWidth - 0.5f * self.s_graphicLayoutSpacing);
-            titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth - 0.5f * self.s_graphicLayoutSpacing, 0, imageWidth + 0.5f * self.s_graphicLayoutSpacing);
-            contentEdgeInsets = UIEdgeInsetsMake(0, 0.5f * self.s_graphicLayoutSpacing, 0, 0.5f * self.s_graphicLayoutSpacing);
+            CGFloat imageWidth = self.imageView.frame.size.width;
+            CGFloat imageHeight = self.imageView.frame.size.height;
+            CGFloat titleIntrinsicContentSizeWidth = self.titleLabel.intrinsicContentSize.width;
+            CGFloat titleIntrinsicContentSizeHeight = self.titleLabel.intrinsicContentSize.height;
+            
+            self.imageEdgeInsets = UIEdgeInsetsMake(titleIntrinsicContentSizeHeight + spacing, 0.0f, 0.0f, -titleIntrinsicContentSizeWidth);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0.0f, -imageWidth, imageHeight + spacing, 0.0f);
         }
             break;
     }
-    
-    self.imageEdgeInsets = imageEdgeInsets;
-    self.titleEdgeInsets = titleEdgeInsets;
-    self.contentEdgeInsets = contentEdgeInsets;
 }
 
 @end

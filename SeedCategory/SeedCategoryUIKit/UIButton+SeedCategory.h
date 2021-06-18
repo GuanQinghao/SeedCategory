@@ -11,14 +11,15 @@
 /// 按钮图文排版方式
 typedef NS_ENUM(NSUInteger, SeedButtonGraphicLayoutStyle) {
     
-    /// 上图下字
-    SeedButtonGraphicLayoutStyleVerticalDefault,
-    /// 上字下图
-    SeedButtonGraphicLayoutStyleVerticalOpposite,
-    /// 左图右字
-    SeedButtonGraphicLayoutStyleHorizontalDefault,
-    /// 左字右图
-    SeedButtonGraphicLayoutStyleHorizontalOpposite
+    /// 文字靠左
+    SeedButtonGraphicLayoutStyleTextLeft,
+    /// 文字靠右
+    SeedButtonGraphicLayoutStyleTextRight,
+    
+    /// 文字靠上
+    SeedButtonGraphicLayoutStyleTextTop,
+    /// 文字靠下
+    SeedButtonGraphicLayoutStyleTextBottom,
 };
 
 
@@ -26,11 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (SeedCategory)
 
-/// 按钮图文排版样式 (枚举)
-@property (nonatomic, assign) SeedButtonGraphicLayoutStyle s_graphicLayoutStyle;
-
-/// 按钮图文间距
-@property (nonatomic, assign) float s_graphicLayoutSpacing;
+/// 设置按钮的图文样式
+/// @param style 图文样式
+/// @param spacing 图文间距
+/// @param operation 图文设置回调(在回调中设置图片和文字)
+- (void)s_setGraphicStyle:(SeedButtonGraphicLayoutStyle)style spacing:(CGFloat)spacing withOperation:(void (^)(UIButton *button))operation;
 
 @end
 
