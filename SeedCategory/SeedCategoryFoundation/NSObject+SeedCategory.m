@@ -178,13 +178,16 @@
     if ([object isKindOfClass:[NSString class]]) {
         
         // 移动号段正则表达式
-        NSString *reg_CM = @"^((13[4-9])|(198)|(147)|(15[0-2,7-9])|(178)|(18[2-4,7-8]))\\d{8}|(1705)\\d{7}$";
+        NSString *reg_CM = @"^((13[4-9])|(14[7-8])|(15[0-2,7-9])|(17[2,8])|(18[2-4,7-8])|(19[5,8]))\\d{8}$";
         
         // 联通号段正则表达式
-        NSString *reg_CU = @"^((13[0-2])|(166)|(145)|(15[5-6])|(176)|(18[5,6]))\\d{8}|(1709)\\d{7}$";
+        NSString *reg_CU = @"^((13[0-2])|(14[5-6])|(15[5-6])|(16[6-7])|(17[1,5-6])|(18[5,6])|(196))\\d{8}$";
         
         // 电信号段正则表达式
-        NSString *reg_CT = @"^((133)|(153)|(199)|(177)|(18[0,1,9]))\\d{8}$";
+        NSString *reg_CT = @"^((133)|(149)|(153)|(17[3-4,7])|(18[0-1,9])|(19[1,3,9]))\\d{8}$";
+        
+        // 虚拟运营商号段正则表达式
+        NSString *reg_VO = @"^((16[2,5,7])|(17[0-1]))\\d{8}$";
         
         NSPredicate *pred_CM = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", reg_CM];
         BOOL isMatch_CM = [pred_CM evaluateWithObject:object];
@@ -195,7 +198,10 @@
         NSPredicate *pred_CT = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", reg_CT];
         BOOL isMatch_CT = [pred_CT evaluateWithObject:object];
         
-        return (isMatch_CM || isMatch_CU || isMatch_CT);
+        NSPredicate *pred_OV = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", reg_VO];
+        BOOL isMatch_OV = [pred_OV evaluateWithObject:object];
+        
+        return (isMatch_CM || isMatch_CU || isMatch_CT || isMatch_OV);
     }
     
     return NO;
@@ -313,63 +319,43 @@
 /// @param object 任意对象
 + (BOOL)s_isValidString:(id)object {
     
-    if (![object isKindOfClass:[NSString class]]) {
-        
-        return NO;
-    }
-    
-    return YES;
+    return [object isKindOfClass:NSString.class];
 }
 
 /// 非空字符串
 /// @param object 任意对象
 + (BOOL)s_isNotNullString:(id)object {
     
-    if (![object isKindOfClass:[NSString class]]) {
+    if ([object isKindOfClass:NSString.class]) {
         
-        return NO;
+        return ([object length] > 0);
     }
     
-    if ([object isEqualToString:@""]) {
-        
-        return NO;
-    }
-    
-    return YES;
+    return NO;
 }
 
 /// 非空字典
 /// @param object 任意对象
 + (BOOL)s_isValidDictionary:(id)object {
     
-    if (![object isKindOfClass:[NSDictionary class]]) {
+    if ([object isKindOfClass:NSDictionary.class]) {
         
-        return NO;
+        return ([object count] > 0);
     }
     
-    if ([object count] <= 0) {
-        
-        return NO;
-    }
-    
-    return YES;
+    return NO;
 }
 
 /// 非空数组
 /// @param object 任意对象
 + (BOOL)s_isValidArray:(id)object {
     
-    if (![object isKindOfClass:[NSArray class]]) {
+    if ([object isKindOfClass:NSArray.class]) {
         
-        return NO;
+        return [object count] > 0;
     }
     
-    if ([object count] <= 0) {
-        
-        return NO;
-    }
-    
-    return YES;
+    return NO;
 }
 
 /// 是否是表情符号(emoji)

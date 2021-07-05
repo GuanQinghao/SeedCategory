@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 
+/// 日期时间格式
 typedef NS_ENUM(NSUInteger, SeedDateFormatType) {
     
     SeedDateFormatTypeChinese,                  // yyyy年MM月dd日 HH时mm分ss秒

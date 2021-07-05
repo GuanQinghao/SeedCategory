@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSNumber (SeedCategory)
 
-/// 数值转千分位金额字符串
+/// 数值对象转千分位金额字符串(保留两位小数)
 /// @param number 数对象
-+ (NSString *)s_formatThousandsAmountWith:(NSNumber *)number;
++ (NSString *)s_formatterThousandsAmountStringWith:(NSNumber *)number;
 
 @end
 

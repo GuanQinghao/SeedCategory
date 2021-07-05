@@ -14,20 +14,16 @@
 /// @param key 字典key值
 - (id)s_objectForKey:(NSString *)key {
     
-    if (key) {
+    if (key != nil) {
         
         id object = [self objectForKey:key];
-        if (object) {
+        if (object != nil) {
             
             return object;
-        } else {
-            
-            return @"";
         }
-    } else {
-        
-        return nil;
     }
+    
+    return nil;
 }
 
 @end
@@ -39,18 +35,9 @@
 /// @param key 任意对象对应key值
 - (void)s_setObject:(id)object forKey:(id)key {
     
-    if (key) {
+    if (key != nil && object != nil) {
         
-        if (object) {
-            
-            [self setValue:object forKey:key];
-        } else {
-            
-            [self setValue:@"" forKey:key];
-        }
-    } else {
-        
-        return;
+        [self setObject:object forKey:key];
     }
 }
 
