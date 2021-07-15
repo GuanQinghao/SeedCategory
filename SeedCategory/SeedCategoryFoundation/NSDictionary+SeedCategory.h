@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDictionary (SeedCategory)
 
-/// 获取任意key值的对象
-/// @param key 字典key值
-- (nullable id)s_objectForKey:(NSString *)key;
+/// 获取任意key的对象
+/// @param key 字典key
+- (nullable id)s_objectForKey:(id)key;
 
 @end
 

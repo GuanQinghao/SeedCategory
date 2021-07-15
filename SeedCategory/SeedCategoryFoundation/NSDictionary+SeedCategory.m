@@ -10,20 +10,23 @@
 
 @implementation NSDictionary (SeedCategory)
 
-/// 获取任意key值的对象
-/// @param key 字典key值
-- (id)s_objectForKey:(NSString *)key {
+/// 获取任意key的对象
+/// @param key 字典key
+- (id)s_objectForKey:(id)key {
     
-    if (key != nil) {
+    if (![self isKindOfClass:NSDictionary.class]) {
         
-        id object = [self objectForKey:key];
-        if (object != nil) {
-            
-            return object;
-        }
+        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
+        return nil;
     }
     
-    return nil;
+    if (key == nil) {
+        
+        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
+        return nil;
+    }
+    
+    return [self objectForKey:key];
 }
 
 @end
@@ -35,10 +38,25 @@
 /// @param key 任意对象对应key值
 - (void)s_setObject:(id)object forKey:(id)key {
     
-    if (key != nil && object != nil) {
+    if (![self isKindOfClass:NSMutableDictionary.class]) {
         
-        [self setObject:object forKey:key];
+        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
+        return;
     }
+    
+    if (key == nil) {
+        
+        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
+        return;
+    }
+    
+    if (object == nil) {
+        
+        NSLog(@"%s -- %d", __FUNCTION__, __LINE__);
+        return;
+    }
+    
+    [self setObject:object forKey:key];
 }
 
 @end
