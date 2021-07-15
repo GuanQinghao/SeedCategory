@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param anObject 任意对象
 - (NSUInteger)s_indexOfObject:(nullable id)anObject;
 
-/// 是否存在数组或是空数组
+/// 数组存在且为空
 - (BOOL)s_isEmpty;
 
 @end
@@ -54,11 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param index 插入位置的索引值
 - (void)s_insertObject:(nullable id)anObject atIndex:(NSUInteger)index;
 
-/// 安全插入多个非空对象
-/// @param objects 多个非空对象
-/// @param indexes 插入位置的索引值
-- (void)s_insertObjects:(nullable NSArray *)objects atIndexes:(nullable NSIndexSet *)indexes;
-
 /// 根据索引安全移除对象
 /// @param index 索引值
 - (void)s_removeObjectAtIndex:(NSUInteger)index;
@@ -67,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param range 索引值范围
 - (void)s_removeObjectsInRange:(NSRange)range;
 
-/// 是否存在数组或是空数组
+/// 数组存在且为空
 - (BOOL)s_isEmpty;
 
 @end
