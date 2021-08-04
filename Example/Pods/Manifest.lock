@@ -1,10 +1,10 @@
 PODS:
   - Expecta (1.0.6)
-  - SeedCategory (0.1.7):
-    - SeedCategory/SeedCategoryFoundation (= 0.1.7)
-    - SeedCategory/SeedCategoryUIKit (= 0.1.7)
-  - SeedCategory/SeedCategoryFoundation (0.1.7)
-  - SeedCategory/SeedCategoryUIKit (0.1.7)
+  - SeedCategory (0.1.8):
+    - SeedCategory/SeedCategoryFoundation (= 0.1.8)
+    - SeedCategory/SeedCategoryUIKit (= 0.1.8)
+  - SeedCategory/SeedCategoryFoundation (0.1.8)
+  - SeedCategory/SeedCategoryUIKit (0.1.8)
   - Specta (1.0.7)
 
 DEPENDENCIES:
@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  SeedCategory: 2e2c252625f6d28d72746231dd928637dc43eac6
+  SeedCategory: 1c818450f29233d2cab6b7ad37eb240942d5fe55
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
 PODFILE CHECKSUM: b486e70c09eb21623f1684900764aa88ff943fff
