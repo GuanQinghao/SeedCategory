@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIApplication (SeedCategory)
 
+/// 应用程序主窗口
+@property (nonatomic, readonly, strong) UIWindow *s_keyWindow;
+
+/// 应用程序主窗口
+- (UIWindow *)s_keyWindow;
+
 /// documents位置
 @property (nonatomic, readonly, strong) NSURL *s_documentsURL;
 

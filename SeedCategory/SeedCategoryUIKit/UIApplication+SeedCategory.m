@@ -10,6 +10,26 @@
 
 @implementation UIApplication (SeedCategory)
 
+/// 获取主窗口
+- (UIWindow *)s_keyWindow {
+    
+    UIWindow *keyWindow = UIApplication.sharedApplication.delegate.window;
+    
+    if (@available(iOS 13.0, *)) {
+        
+        for (UIWindowScene *windowScene in UIApplication.sharedApplication.connectedScenes) {
+            
+            if (windowScene.activationState == UISceneActivationStateForegroundActive) {
+                
+                keyWindow = windowScene.windows.firstObject;
+                break;
+            }
+        }
+    }
+    
+    return keyWindow;
+}
+
 /// documents位置
 - (NSURL *)s_documentsURL {
     
